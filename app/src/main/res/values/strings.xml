@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Autoskola</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="titles">
+        <item>Brzina kretanja</item>
+        <item>Prometni znakovi</item>
+        <item>Prometni semafor</item>
+        <item>Raskrizje</item>
+        <item>Zaustavljanje i parkiranje</item>
+        <item>Kružni tok-rotor</item>
+
+
+    </string-array>
+    <string-array name="classes">
+        <item>BrzinaKretanja</item>
+        <item>PrometniZnakovi</item>
+        <item>PrometniSemafor</item>
+        <item>Raskrizje</item>
+        <item>ZaustavljanjeiParkiranje</item>
+        <item>KruzniTokRotor</item>
+
+
+    </string-array>
+
+</resources>
