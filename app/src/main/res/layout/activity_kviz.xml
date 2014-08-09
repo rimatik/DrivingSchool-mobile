@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/Background_autoskolaP1"
+    android:background="@drawable/background_autoskola_p1"
     >
 
     <ImageView
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Large Text"
-            android:textColor="@color/black"
+            android:textColor="@android:color/black"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RadioGroup
@@ -46,7 +46,7 @@
                 android:checked="false"
 
                 tools:text="RadioButton"
-                android:textColor="@color/black"/>
+                android:textColor="@android:color/black"/>
 
             <RadioButton
 
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="RadioButton"
-                android:textColor="@color/black"/>
+                android:textColor="@android:color/black"/>
 
             <RadioButton
 
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="RadioButton"
-                android:textColor="@color/black"/>
+                android:textColor="@android:color/black"/>
 
             <Button
                 android:id="@+id/bNext"
