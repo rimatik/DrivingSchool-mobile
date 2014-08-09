@@ -17,7 +17,7 @@ import android.util.Log;
 import com.slaven.radja.autoskola.R;
 
 public class DbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     // Database Name
     private static final String DATABASE_NAME = "autoskolaQuiz";
     // tasks table name
@@ -42,7 +42,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_QUES
                 + " TEXT, " + KEY_ANSWER+ " TEXT, "+KEY_OPTA +" TEXT, "
                 +KEY_OPTB +" TEXT, "+KEY_OPTC+" TEXT, " + KEY_IMAGE_ID + " INTEGER, " + KEY_HAS_IMAGE + " INTEGER) ";
-        Log.e("FRANCO", sql);
+        Log.e("SLAVEN", sql);
         db.execSQL(sql);
         addQuestions();
 //db.close();
@@ -51,20 +51,66 @@ public class DbHelper extends SQLiteOpenHelper {
     {
 
         Question q1=new Question("Which company is the largest manufacturer" +
-                " of network equipment?","HP", "IBM", "CISCO", "C", R.drawable.kruznitok_icon, true);
+                " of network equipment?","HP", "IBM", "CISCO", "CISCO", R.drawable.parking_icon, true);
         this.addQuestion(q1);
         Question q2=new Question("Which of the following is NOT " +
-                "an operating system?", "SuSe", "BIOS", "DOS", "B");
+                "an operating system?", "SuSe", "BIOS", "DOS", "BIOS");
         this.addQuestion(q2);
         Question q3=new Question("Which of the following is the fastest" +
-                " writable memory?","RAM", "FLASH","Register","C", R.drawable.crossroad_icon, true);
+                " writable memory?","RAM", "FLASH","Register","Register", R.drawable.semafor_icon, true);
         this.addQuestion(q3);
         Question q4=new Question("Which of the following device" +
-                " regulates internet traffic?",    "Router", "Bridge", "Hub","A");
+                " regulates internet traffic?", "Router", "Bridge", "Hub","Router");
         this.addQuestion(q4);
         Question q5=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","C");
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
         this.addQuestion(q5);
+        Question q6=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q6);
+        Question q7=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q7);
+        Question q8=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q8);
+        Question q9=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q9);
+        Question q10=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q10);
+        Question q11=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q11);
+        Question q12=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q12);
+        Question q13=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q13);
+        Question q14=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q14);
+        Question q15=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q15);
+        Question q16=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q16);
+        Question q17=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q17);
+        Question q18=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q18);
+        Question q19=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q19);
+        Question q20=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q20);
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
@@ -78,10 +124,10 @@ public class DbHelper extends SQLiteOpenHelper {
 //SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_QUES, quest.getQUESTION());
-        values.put(KEY_ANSWER, quest.getANSWER());
         values.put(KEY_OPTA, quest.getOPTA());
         values.put(KEY_OPTB, quest.getOPTB());
         values.put(KEY_OPTC, quest.getOPTC());
+        values.put(KEY_ANSWER, quest.getANSWER());
         values.put(KEY_IMAGE_ID, quest.getImg_ID());
         values.put(KEY_HAS_IMAGE, quest.hasImage() ? 1 : 0);
 
@@ -100,10 +146,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 Question quest = new Question();
                 quest.setID(cursor.getInt(0));
                 quest.setQUESTION(cursor.getString(1));
-                quest.setANSWER(cursor.getString(2));
                 quest.setOPTA(cursor.getString(3));
                 quest.setOPTB(cursor.getString(4));
                 quest.setOPTC(cursor.getString(5));
+                quest.setANSWER(cursor.getString(2));
                 quest.setImg_ID(cursor.getInt(6));
                 quest.setHasImage(cursor.getInt(7) == 1);
                 quesList.add(quest);
