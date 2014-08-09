@@ -8,8 +8,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/iv_question_image"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,8 +55,20 @@
                 android:id="@+id/bNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Next" />
+                android:text="Next" />
         </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal"
+        android:id="@+id/ll_question_picker"
+        android:layout_below="@+id/ll_question_wrapper"
+        android:layout_height="wrap_content">
+
     </LinearLayout>
 
 </RelativeLayout>

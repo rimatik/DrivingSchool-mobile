@@ -9,15 +9,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.slaven.radja.autoskola.R;
+import com.slaven.radja.autoskola.helpers.DisplayHelper;
 
 public class QuizActivity extends Activity implements View.OnClickListener{
     List<Question> quesList;
@@ -27,6 +31,8 @@ public class QuizActivity extends Activity implements View.OnClickListener{
     TextView txtQuestion;
     RadioButton rda, rdb, rdc;
     Button butNext;
+    ImageView questionImage;
+    LinearLayout questionPicker;
 
 
     @Override
@@ -41,7 +47,10 @@ public class QuizActivity extends Activity implements View.OnClickListener{
         rdb = (RadioButton) findViewById(R.id.radio1);
         rdc = (RadioButton) findViewById(R.id.radio2);
         butNext = (Button) findViewById(R.id.bNext);
+        questionImage = (ImageView) findViewById(R.id.iv_question_image);
+        questionPicker = (LinearLayout) findViewById(R.id.ll_question_picker);
         setQuestionView();
+        setQuestionPicker();
 
         butNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +80,29 @@ public class QuizActivity extends Activity implements View.OnClickListener{
 
 
     }
+
+    private void setQuestionPicker() {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0 , DisplayHelper.getDpToPx(this, 30));
+        params.weight = 1;
+        params.rightMargin = DisplayHelper.getDpToPx(this, 5);
+        for(int i = 0; i < quesList.size(); i++) {
+            final TextView textView = new TextView(this);
+            final int position = i;
+            textView.setText(Integer.toString(i + 1));
+            textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+            textView.setBackgroundColor(getResources().getColor(R.color.light_gray));
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    currentQ = quesList.get(position);
+                    qid = position;
+                    setQuestionView();
+                }
+            });
+            questionPicker.addView(textView, params);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 // Inflate the menu; this adds items to the action bar if it is present.
@@ -83,6 +115,12 @@ public class QuizActivity extends Activity implements View.OnClickListener{
         rda.setText(currentQ.getOPTA());
         rdb.setText(currentQ.getOPTB());
         rdc.setText(currentQ.getOPTC());
+        if (currentQ.hasImage()) {
+            questionImage.setImageResource(currentQ.getImg_ID());
+            questionImage.setVisibility(View.VISIBLE);
+        } else {
+            questionImage.setVisibility(View.GONE);
+        }
         qid++;
   }
 

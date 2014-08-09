@@ -11,8 +11,7 @@ public class Question {
     private String OPTB;
     private String OPTC;
     private String ANSWER;
-    private String img_ID;
-    // za pitanja koja ti imaju sliku u kontruktoru postavi ovo polje na true
+    private int img_ID;
     private boolean hasImage;
 
 
@@ -24,10 +23,12 @@ public class Question {
         OPTB="";
         OPTC="";
         ANSWER="";
+        img_ID = 0;
+        hasImage = false;
 
     }
     public Question(String qUESTION, String oPTA, String oPTB, String oPTC,
-                    String aNSWER,String id_Image, boolean hasImage)
+                    String aNSWER, int id_Image, boolean hasImage)
     {
         QUESTION = qUESTION;
         OPTA = oPTA;
@@ -84,10 +85,10 @@ public class Question {
     public void setANSWER(String aNSWER) {
         ANSWER = aNSWER;
     }
-    public void setImg_ID(String img_ID) { this.img_ID = img_ID;}
-    public String getImg_ID() { return img_ID;}
+    public void setImg_ID(int img_ID) { this.img_ID = img_ID;}
+    public int getImg_ID() { return img_ID;}
 
-    public boolean isHasImage() {
+    public boolean hasImage() {
         return hasImage;
     }
 
