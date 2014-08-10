@@ -43,7 +43,27 @@
             android:label="Autoskola">
         </activity>
         <activity
-            android:name=".ucenje.PrometniZnakovi"
+            android:name=".ucenje.znakovi.PrometniZnakovi"
+            android:label="Autoskola">
+        </activity>
+        <activity
+            android:name=".ucenje.znakovi.ZnakoviOpasnosti"
+            android:label="Autoskola">
+        </activity>
+        <activity
+            android:name=".ucenje.znakovi.ZnakoviIzricitihNaredbi"
+            android:label="Autoskola">
+        </activity>
+        <activity
+            android:name=".ucenje.znakovi.ZnakoviObavijesti"
+            android:label="Autoskola">
+        </activity>
+        <activity
+            android:name=".ucenje.znakovi.ZnakoviZaVodjenjePrometa"
+            android:label="Autoskola">
+        </activity>
+        <activity
+            android:name=".ucenje.znakovi.DopunskePloceUzZnakove"
             android:label="Autoskola">
         </activity>
         <activity
@@ -51,7 +71,19 @@
             android:label="Autoskola">
         </activity>
         <activity
-            android:name=".ucenje.Raskrizje"
+            android:name=".ucenje.raskrizje.Raskrizje"
+            android:label="Autoskola">
+        </activity>
+        <activity
+            android:name=".ucenje.raskrizje.PrednostNaRaskrizju"
+            android:label="Autoskola">
+        </activity>
+        <activity
+            android:name=".ucenje.raskrizje.PrometniPolicajacNaRaskrizju"
+            android:label="Autoskola">
+        </activity>
+        <activity
+            android:name=".ucenje.raskrizje.HijerarhijskiRedosljedNaRaskrizju"
             android:label="Autoskola">
         </activity>
         <activity

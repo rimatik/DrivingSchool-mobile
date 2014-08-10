@@ -1,13 +1,11 @@
 package com.slaven.radja.autoskola.ucenje;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,12 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.slaven.radja.autoskola.R;
-
-
-import java.security.AccessControlContext;
+import com.slaven.radja.autoskola.ucenje.raskrizje.Raskrizje;
+import com.slaven.radja.autoskola.ucenje.znakovi.PrometniZnakovi;
 
 /**
  * Created by Computer on 05/08/2014.
