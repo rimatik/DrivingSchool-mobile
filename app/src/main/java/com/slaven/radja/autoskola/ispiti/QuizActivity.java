@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class QuizActivity extends Activity {
 
     List<Question> quesList;
-    int score = 0;
+    int score = 0; //komentar
     int qid = 0;
     Question currentQ;
     TextView txtQuestion, tvVrijeme;
