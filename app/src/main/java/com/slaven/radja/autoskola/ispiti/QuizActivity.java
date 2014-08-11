@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.slaven.radja.autoskola.R;
 import com.slaven.radja.autoskola.helpers.DisplayHelper;
@@ -30,13 +31,15 @@ public class QuizActivity extends Activity {
     List<Question> quesList;
     int score = 0; //komentar
     int qid = 0;
-    Question currentQ;
+    int serviceId = 0;
+    Question currentQ, prevQ;
     TextView txtQuestion, tvVrijeme;
-    RadioButton rda, rdb, rdc;
-    Button butNext;
+    RadioButton rda, rdb, rdc, answer;
+    Button butNext,butPrev;
     Intent serviceIntent;
     ImageView questionImage;
     LinearLayout questionPicker;
+    String pom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +49,13 @@ public class QuizActivity extends Activity {
 
         quesList = db.getAllQuestions();
         currentQ = quesList.get(qid);
+        prevQ = quesList.get(serviceId);
         txtQuestion = (TextView) findViewById(R.id.textView1);
         rda = (RadioButton) findViewById(R.id.radio0);
         rdb = (RadioButton) findViewById(R.id.radio1);
         rdc = (RadioButton) findViewById(R.id.radio2);
         butNext = (Button) findViewById(R.id.bNext);
+        butPrev = (Button) findViewById(R.id.bPrev);
         tvVrijeme = (TextView) findViewById(R.id.satPrikaz);
         serviceIntent = new Intent(QuizActivity.this, ResultActivity.class);
         questionImage = (ImageView) findViewById(R.id.iv_question_image);
@@ -81,10 +86,10 @@ public class QuizActivity extends Activity {
             @Override
             public void onClick(View view) {
                 RadioGroup grp = (RadioGroup) findViewById(R.id.radioGroup1);
-                RadioButton answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
-
+                answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
 
                 if (currentQ.getANSWER().equals(answer.getText())) {
+
                     score++;
                     Bundle b = new Bundle();
                     b.putInt("score", score);
@@ -107,6 +112,25 @@ public class QuizActivity extends Activity {
                     finish();
                 }
             }
+
+        });
+        butPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (qid <= 1) {
+                    Toast.makeText(getApplicationContext(), "Prvo pitanje", Toast.LENGTH_LONG).show();
+
+                } else{
+                    qid = qid-2;
+                    currentQ = quesList.get(qid);
+
+                    setQuestionView();
+
+
+                }
+            }
+
 
         });
 
@@ -156,5 +180,18 @@ public class QuizActivity extends Activity {
             questionImage.setVisibility(View.GONE);
         }
         qid++;
+    }
+    private void setQuestionViewPrev() {
+        txtQuestion.setText(prevQ.getQUESTION());
+        rda.setText(prevQ.getOPTA());
+        rdb.setText(prevQ.getOPTB());
+        rdc.setText(prevQ.getOPTC());
+        if (prevQ.hasImage()) {
+            questionImage.setImageResource(prevQ.getImg_ID());
+            questionImage.setVisibility(View.VISIBLE);
+        } else {
+            questionImage.setVisibility(View.GONE);
+        }
+        qid--;
     }
 }

@@ -43,8 +43,7 @@
                 android:id="@+id/radio0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="false"
-
+                android:checked="true"
                 tools:text="RadioButton"
                 android:textColor="@color/black"/>
 
@@ -65,12 +64,24 @@
                 tools:text="RadioButton"
                 android:textColor="@color/black"/>
 
+
+        </RadioGroup>
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/bPrev"
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:text="Prev" />
             <Button
                 android:id="@+id/bNext"
-                android:layout_width="match_parent"
+                android:layout_width="174dp"
                 android:layout_height="wrap_content"
                 android:text="Next" />
-        </RadioGroup>
+
+            </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

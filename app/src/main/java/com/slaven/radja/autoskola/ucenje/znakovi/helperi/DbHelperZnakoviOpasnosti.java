@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Computer on 09/08/2014.
  */
 public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 15;
+    private static final int DATABASE_VERSION = 17;
     // Database Name
     private static final String DATABASE_NAME = "autoskolaQuiz";
     // tasks table name
@@ -45,9 +45,9 @@ public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
     }
     private void addSigns()
     {
-        Znak z1=new Znak("Križanje cesta iste važnosti",R.drawable.raskrizje_ceste_iste_vaznosti_img);
+        Znak z1=new Znak("Križanje cesta iste važnosti",R.drawable.raskrizje_iste_vaznosti_img);
         this.addSign(z1);
-        Znak z2=new Znak("Zabrana prometa u jednom smjeru",R.drawable.zabrana_prometa_u_jednom_smjeru_img);
+        Znak z2=new Znak("Zabrana prometa u jednom smjeru",R.drawable.zabrana_prometa_img);
         this.addSign(z2);
         Znak z3=new Znak("Raskrižje sa sporednom cestom pod pravim kutom",R.drawable.raskrizje_sa_sporednom_cestom_pod_pravim_kutom_img);
         this.addSign(z3);
