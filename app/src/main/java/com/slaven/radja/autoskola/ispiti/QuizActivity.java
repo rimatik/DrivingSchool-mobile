@@ -9,27 +9,28 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.slaven.radja.autoskola.R;
-import com.slaven.radja.autoskola.helpers.DisplayHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class QuizActivity extends Activity {
 
     List<Question> quesList;
-    int score = 0; //komentar
+    int score = 0;
     int qid = 0;
     int serviceId = 0;
     Question currentQ, prevQ;
@@ -38,8 +39,7 @@ public class QuizActivity extends Activity {
     Button butNext,butPrev;
     Intent serviceIntent;
     ImageView questionImage;
-    LinearLayout questionPicker;
-    String pom;
+    Spinner questionPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +59,9 @@ public class QuizActivity extends Activity {
         tvVrijeme = (TextView) findViewById(R.id.satPrikaz);
         serviceIntent = new Intent(QuizActivity.this, ResultActivity.class);
         questionImage = (ImageView) findViewById(R.id.iv_question_image);
-        questionPicker = (LinearLayout) findViewById(R.id.ll_question_picker);
+        questionPicker = (Spinner) findViewById(R.id.question_picker);
+        setupQuestionPickerSpinner();
         setQuestionView();
-        setQuestionPicker();
 
         new CountDownTimer(120000, 1000) {
 
@@ -136,30 +136,15 @@ public class QuizActivity extends Activity {
 
     }
 
-    private void setQuestionPicker() {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, DisplayHelper.getDpToPx(this, 30));
-        params.weight = 1;
-        params.rightMargin = DisplayHelper.getDpToPx(this, 5);
-
+    private void setupQuestionPickerSpinner() {
+        List<String> questions = new ArrayList<String>();
         for (int i = 0; i < quesList.size(); i++) {
-
-
-            final TextView textView = new TextView(this);
-            final int position = i;
-            textView.setText(Integer.toString(i + 1));
-            textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-            textView.setBackgroundColor(getResources().getColor(R.color.light_gray));
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    currentQ = quesList.get(position);
-                    qid = position;
-                    setQuestionView();
-                }
-            });
-            questionPicker.addView(textView, params);
+            questions.add(String.valueOf(i + 1));
         }
-
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, questions);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        questionPicker.setAdapter(spinnerArrayAdapter);
+        questionPicker.setOnItemClickListener(questionPickerListener);
     }
 
     @Override
@@ -181,6 +166,7 @@ public class QuizActivity extends Activity {
         }
         qid++;
     }
+
     private void setQuestionViewPrev() {
         txtQuestion.setText(prevQ.getQUESTION());
         rda.setText(prevQ.getOPTA());
@@ -194,4 +180,11 @@ public class QuizActivity extends Activity {
         }
         qid--;
     }
+
+    private AdapterView.OnItemClickListener questionPickerListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        }
+    };
 }
