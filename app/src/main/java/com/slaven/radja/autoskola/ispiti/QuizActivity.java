@@ -31,15 +31,14 @@ public class QuizActivity extends Activity {
     List<Question> quesList;
     int score = 0; //komentar
     int qid = 0;
-    int serviceId = 0;
-    Question currentQ, prevQ;
+    Question currentQ, confirmedQ;
     TextView txtQuestion, tvVrijeme;
     RadioButton rda, rdb, rdc, answer;
-    Button butNext,butPrev;
+    Button butNext,butPrev,butConfirm;
     Intent serviceIntent;
     ImageView questionImage;
-    LinearLayout questionPicker;
-    String pom;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +48,20 @@ public class QuizActivity extends Activity {
 
         quesList = db.getAllQuestions();
         currentQ = quesList.get(qid);
-        prevQ = quesList.get(serviceId);
+        confirmedQ = quesList.get(qid);
         txtQuestion = (TextView) findViewById(R.id.textView1);
         rda = (RadioButton) findViewById(R.id.radio0);
         rdb = (RadioButton) findViewById(R.id.radio1);
         rdc = (RadioButton) findViewById(R.id.radio2);
         butNext = (Button) findViewById(R.id.bNext);
         butPrev = (Button) findViewById(R.id.bPrev);
+        butConfirm = (Button) findViewById(R.id.bConfirm);
         tvVrijeme = (TextView) findViewById(R.id.satPrikaz);
         serviceIntent = new Intent(QuizActivity.this, ResultActivity.class);
         questionImage = (ImageView) findViewById(R.id.iv_question_image);
-        questionPicker = (LinearLayout) findViewById(R.id.ll_question_picker);
+
         setQuestionView();
-        setQuestionPicker();
+
 
         new CountDownTimer(120000, 1000) {
 
@@ -82,19 +82,51 @@ public class QuizActivity extends Activity {
             }
         }.start();
 
-        butNext.setOnClickListener(new View.OnClickListener() {
+        butConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RadioGroup grp = (RadioGroup) findViewById(R.id.radioGroup1);
                 answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
 
-                if (currentQ.getANSWER().equals(answer.getText())) {
-
+                if(confirmedQ.getANSWER().equals(answer.getText())){
+                    if(qid < 1){
+                        score++;
+                    Bundle b = new Bundle();
+                    b.putInt("score", score);
+                    serviceIntent.putExtras(b);
+                    }
+                    else{
+                        Bundle b = new Bundle();
+                        b.putInt("score", score);
+                        serviceIntent.putExtras(b);
+                    }
+                    }
+                else  {
+                   if (currentQ.getANSWER().equals(answer.getText())){
+                     confirmedQ.getANSWER();
                     score++;
                     Bundle b = new Bundle();
                     b.putInt("score", score);
                     serviceIntent.putExtras(b);
+                   }
+                   else{
+
+                       Bundle b = new Bundle();
+                       b.putInt("score", score);
+                       serviceIntent.putExtras(b);
+
+                   }
                 }
+
+
+            }
+
+        });
+
+        butNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 if (qid < 5) {
                     currentQ = quesList.get(qid);
                     Bundle b = new Bundle();
@@ -124,7 +156,6 @@ public class QuizActivity extends Activity {
                 } else{
                     qid = qid-2;
                     currentQ = quesList.get(qid);
-
                     setQuestionView();
 
 
@@ -133,32 +164,6 @@ public class QuizActivity extends Activity {
 
 
         });
-
-    }
-
-    private void setQuestionPicker() {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, DisplayHelper.getDpToPx(this, 30));
-        params.weight = 1;
-        params.rightMargin = DisplayHelper.getDpToPx(this, 5);
-
-        for (int i = 0; i < quesList.size(); i++) {
-
-
-            final TextView textView = new TextView(this);
-            final int position = i;
-            textView.setText(Integer.toString(i + 1));
-            textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-            textView.setBackgroundColor(getResources().getColor(R.color.light_gray));
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    currentQ = quesList.get(position);
-                    qid = position;
-                    setQuestionView();
-                }
-            });
-            questionPicker.addView(textView, params);
-        }
 
     }
 
@@ -181,17 +186,5 @@ public class QuizActivity extends Activity {
         }
         qid++;
     }
-    private void setQuestionViewPrev() {
-        txtQuestion.setText(prevQ.getQUESTION());
-        rda.setText(prevQ.getOPTA());
-        rdb.setText(prevQ.getOPTB());
-        rdc.setText(prevQ.getOPTC());
-        if (prevQ.hasImage()) {
-            questionImage.setImageResource(prevQ.getImg_ID());
-            questionImage.setVisibility(View.VISIBLE);
-        } else {
-            questionImage.setVisibility(View.GONE);
-        }
-        qid--;
-    }
+
 }
