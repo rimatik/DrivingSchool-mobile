@@ -31,6 +31,8 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String KEY_OPTC= "optc"; //option c
     private static final String KEY_IMAGE_ID = "image_id";
     private static final String KEY_HAS_IMAGE = "has_image";
+    private static final String KEY_CORRECT_ANSWER = "correct_answer";
+
     private SQLiteDatabase dbase;
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,7 +43,8 @@ public class DbHelper extends SQLiteOpenHelper {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_QUEST + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_QUES
                 + " TEXT, " + KEY_ANSWER+ " TEXT, "+KEY_OPTA +" TEXT, "
-                +KEY_OPTB +" TEXT, "+KEY_OPTC+" TEXT, " + KEY_IMAGE_ID + " INTEGER, " + KEY_HAS_IMAGE + " INTEGER) ";
+                +KEY_OPTB +" TEXT, "+KEY_OPTC+" TEXT, " + KEY_IMAGE_ID + " INTEGER, " + KEY_HAS_IMAGE + " INTEGER, "
+                + KEY_CORRECT_ANSWER + " INTEGER)";
         Log.e("SLAVEN", sql);
         db.execSQL(sql);
         addQuestions();
@@ -51,19 +54,19 @@ public class DbHelper extends SQLiteOpenHelper {
     {
 
         Question q1=new Question("Which company is the largest manufacturer" +
-                " of network equipment?","HP", "IBM", "CISCO", "CISCO", R.drawable.parking_icon, true);
+                " of network equipment?","HP", "IBM", "CISCO", "CISCO", R.drawable.parking_icon, true, 2);
         this.addQuestion(q1);
         Question q2=new Question("Which of the following is NOT " +
-                "an operating system?", "SuSe", "BIOS", "DOS", "BIOS");
+                "an operating system?", "SuSe", "BIOS", "DOS", "BIOS", -1, false, 1);
         this.addQuestion(q2);
         Question q3=new Question("Which of the following is the fastest" +
-                " writable memory?","RAM", "FLASH","Register","Register", R.drawable.semafor_icon, true);
+                " writable memory?","RAM", "FLASH","Register","Register", R.drawable.semafor_icon, true, 2);
         this.addQuestion(q3);
         Question q4=new Question("Which of the following device" +
-                " regulates internet traffic?", "Router", "Bridge", "Hub","Router");
+                " regulates internet traffic?", "Router", "Bridge", "Hub","Router", -1, false, 0);
         this.addQuestion(q4);
         Question q5=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
+                " interpreted language?","Ruby","Python","BASIC","BASIC", -1, false, 2);
         this.addQuestion(q5);
 
     }
@@ -85,6 +88,7 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(KEY_ANSWER, quest.getANSWER());
         values.put(KEY_IMAGE_ID, quest.getImg_ID());
         values.put(KEY_HAS_IMAGE, quest.hasImage() ? 1 : 0);
+        values.put(KEY_CORRECT_ANSWER, quest.getCorrectAnswer());
 
 // Inserting Row
         dbase.insert(TABLE_QUEST, null, values);
@@ -107,6 +111,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 quest.setANSWER(cursor.getString(2));
                 quest.setImg_ID(cursor.getInt(6));
                 quest.setHasImage(cursor.getInt(7) == 1);
+                quest.setCorrectAnswer(cursor.getInt(8));
                 quesList.add(quest);
             } while (cursor.moveToNext());
         }

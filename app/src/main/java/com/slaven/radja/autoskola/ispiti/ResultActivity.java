@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.slaven.radja.autoskola.Constants;
 import com.slaven.radja.autoskola.Home;
 import com.slaven.radja.autoskola.R;
 
@@ -35,19 +36,19 @@ public class ResultActivity extends Activity implements View.OnClickListener{
         slikaPrikaz = (ImageView) findViewById(R.id.ivPrikazRezultat);
 //get score
         Bundle b = getIntent().getExtras();
-        int score = b.getInt("score");
-        if(score < 2){
-        t.setText("Nažalost niste prošli test" + " sakupili ste ukupno: " + score + "/21" + " bodova!");
-        t.setTextColor(Color.RED);
-        t.setTextSize(20);
-         slikaPrikaz.setImageResource(R.drawable.wrong_img);
-        }else {
+        int score = b.getInt(Constants.KEY_SCORE);
+        if (score < 2) {
+            t.setText("Nažalost niste prošli test" + " sakupili ste ukupno: " + score + "/21" + " bodova!");
+            t.setTextColor(Color.RED);
+            t.setTextSize(20);
+            slikaPrikaz.setImageResource(R.drawable.wrong_img);
+        } else {
             t.setText("Uspješno ste položili test" + " sakupili ste ukupno: " + score + "/21" + " bodova!" + " Čestitamo!");
             t.setTextColor(Color.BLACK);
             t.setTextSize(20);
             slikaPrikaz.setImageResource(R.drawable.check_img);
         }
-        }
+    }
 //display score
 
 
@@ -55,9 +56,6 @@ public class ResultActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        v.getId();
-        Intent ucenje = new Intent(ResultActivity.this,Home.class);
-        startActivity(ucenje);
         finish();
     }
 }
