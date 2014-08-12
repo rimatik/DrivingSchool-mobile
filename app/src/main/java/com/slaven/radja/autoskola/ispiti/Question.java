@@ -13,6 +13,7 @@ public class Question {
     private String ANSWER;
     private int img_ID;
     private boolean hasImage;
+    private int correctAnswer;
 
 
     public Question()
@@ -25,10 +26,11 @@ public class Question {
         ANSWER="";
         img_ID = 0;
         hasImage = false;
+        correctAnswer = -1;
 
     }
     public Question(String qUESTION, String oPTA, String oPTB, String oPTC,
-                    String aNSWER, int id_Image, boolean hasImage)
+                    String aNSWER, int id_Image, boolean hasImage, int correctAnswer)
     {
         QUESTION = qUESTION;
         OPTA = oPTA;
@@ -37,16 +39,9 @@ public class Question {
         ANSWER = aNSWER;
         img_ID = id_Image;
         this.hasImage = hasImage;
+        this.correctAnswer = correctAnswer;
     }
-    public Question(String qUESTION, String oPTA, String oPTB, String oPTC,
-                    String aNSWER) {
 
-        QUESTION = qUESTION;
-        OPTA = oPTA;
-        OPTB = oPTB;
-        OPTC = oPTC;
-        ANSWER = aNSWER;
-    }
     public int getID()
     {
         return ID;
@@ -94,5 +89,17 @@ public class Question {
 
     public void setHasImage(boolean hasImage) {
         this.hasImage = hasImage;
+    }
+
+    public boolean isHasImage() {
+        return hasImage;
+    }
+
+    public int getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(int correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 }
