@@ -89,13 +89,23 @@ public class QuizActivity extends Activity {
                 answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
 
                 if(confirmedQ.getANSWER().equals(answer.getText())){
-                    if(qid < 1){
-                        score++;
-                    Bundle b = new Bundle();
-                    b.putInt("score", score);
-                    serviceIntent.putExtras(b);
-                    }
-                    else{
+                    if(qid <= 1){
+                        if (currentQ.getANSWER().equals(answer.getText())){
+                            confirmedQ.setANSWER((String)answer.getText());
+                            score++;
+                            Bundle b = new Bundle();
+                            b.putInt("score", score);
+                            serviceIntent.putExtras(b);
+                        }
+                        else{
+
+                            Bundle b = new Bundle();
+                            b.putInt("score", score);
+                            serviceIntent.putExtras(b);
+
+                        }
+                        }
+                       else{
                         Bundle b = new Bundle();
                         b.putInt("score", score);
                         serviceIntent.putExtras(b);
@@ -103,7 +113,7 @@ public class QuizActivity extends Activity {
                     }
                 else  {
                    if (currentQ.getANSWER().equals(answer.getText())){
-                     confirmedQ.getANSWER();
+                     confirmedQ.setANSWER((String)answer.getText());
                     score++;
                     Bundle b = new Bundle();
                     b.putInt("score", score);

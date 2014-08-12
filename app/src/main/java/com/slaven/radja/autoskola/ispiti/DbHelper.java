@@ -17,7 +17,7 @@ import android.util.Log;
 import com.slaven.radja.autoskola.R;
 
 public class DbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 20;
     // Database Name
     private static final String DATABASE_NAME = "autoskolaQuiz";
     // tasks table name
@@ -62,7 +62,9 @@ public class DbHelper extends SQLiteOpenHelper {
         Question q4=new Question("Which of the following device" +
                 " regulates internet traffic?", "Router", "Bridge", "Hub","Router");
         this.addQuestion(q4);
-
+        Question q5=new Question("Which of the following is NOT an" +
+                " interpreted language?","Ruby","Python","BASIC","BASIC");
+        this.addQuestion(q5);
 
     }
     @Override
