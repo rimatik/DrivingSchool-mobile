@@ -185,7 +185,7 @@ public class QuizActivity extends Activity {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, questions);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         questionPicker.setAdapter(spinnerArrayAdapter);
-        questionPicker.setOnItemClickListener(questionPickerListener);
+        questionPicker.setOnItemSelectedListener(questionPickerListener);
     }
 
     @Override
@@ -226,9 +226,17 @@ public class QuizActivity extends Activity {
         qid--;
     }
 
-    private AdapterView.OnItemClickListener questionPickerListener = new AdapterView.OnItemClickListener() {
+    private AdapterView.OnItemSelectedListener questionPickerListener = new AdapterView.OnItemSelectedListener() {
+
         @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+            qid = position;
+            currentQ = quesList.get(position);
+            setQuestionView();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
 
         }
     };
