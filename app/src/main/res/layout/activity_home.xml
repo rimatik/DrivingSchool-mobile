@@ -3,10 +3,6 @@
     android:background="@drawable/background_autoskola_p1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".Home"
     >
 
@@ -16,27 +12,28 @@
                     android:columnCount="2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="84dp"
+
+                    android:id="@+id/gridLayout"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/gridLayout">
+                    android:layout_marginTop="105dp">
 
                     <RelativeLayout>
                         <TextView
-                            android:text="Ucenje"
+                            android:text="Učenje"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#ffffff"
                            android:layout_below="@+id/ivUcenje"
                             android:layout_centerHorizontal="true"
-                            android:textSize="17dp"/>
+                            android:textSize="15dp"/>
 
                         <ImageView
                             android:layout_gravity="fill_horizontal"
                             android:src="@drawable/notes"
-                             android:layout_width="160dp"
-                            android:layout_height="90dp"
-                            android:padding="10dp"
+                             android:layout_width="130dp"
+                            android:layout_height="60dp"
+
                             android:id="@+id/ivUcenje"
 
                             />
@@ -50,13 +47,13 @@
                             android:textColor="#ffffff"
                             android:layout_below="@+id/ivIspiti"
                             android:layout_centerHorizontal="true"
-                            android:textSize="17dp"/>
+                            android:textSize="15dp"/>
                         <ImageView
                             android:src="@drawable/ispiti"
                             android:id="@+id/ivIspiti"
-                            android:padding="10dp"
-                            android:layout_width="160dp"
-                            android:layout_height="90dp"
+
+                            android:layout_width="130dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="fill_horizontal"
                             />
 
@@ -71,14 +68,14 @@
                             android:textColor="#ffffff"
                             android:layout_below="@+id/ivSettings"
                             android:layout_centerHorizontal="true"
-                            android:textSize="17dp"/>
+                            android:textSize="15dp"/>
 
                         <ImageView
                             android:layout_gravity="fill_horizontal"
                             android:src="@drawable/postavke"
-                            android:layout_width="160dp"
-                            android:layout_height="90dp"
-                            android:padding="10dp"
+                            android:layout_width="130dp"
+                            android:layout_height="60dp"
+
                             android:id="@+id/ivSettings"
 
                             android:layout_alignParentTop="true"
@@ -93,15 +90,15 @@
                             android:textColor="#ffffff"
                             android:layout_below="@+id/ivInfo"
                             android:layout_centerHorizontal="true"
-                            android:textSize="17dp"/>
+                            android:textSize="15dp"/>
 
                         <ImageView
 
                             android:layout_gravity="fill_horizontal"
                             android:src="@drawable/info"
-                            android:layout_width="160dp"
-                            android:layout_height="90dp"
-                            android:padding="5dp"
+                            android:layout_width="130dp"
+                            android:layout_height="60dp"
+
 
                             android:id="@+id/ivInfo"
 
