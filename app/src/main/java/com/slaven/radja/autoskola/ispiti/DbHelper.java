@@ -17,7 +17,7 @@ import android.util.Log;
 import com.slaven.radja.autoskola.R;
 
 public class DbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 20;
     // Database Name
     private static final String DATABASE_NAME = "autoskolaQuiz";
     // tasks table name
@@ -65,51 +65,6 @@ public class DbHelper extends SQLiteOpenHelper {
         Question q5=new Question("Which of the following is NOT an" +
                 " interpreted language?","Ruby","Python","BASIC","BASIC");
         this.addQuestion(q5);
-        Question q6=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q6);
-        Question q7=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q7);
-        Question q8=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q8);
-        Question q9=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q9);
-        Question q10=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q10);
-        Question q11=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q11);
-        Question q12=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q12);
-        Question q13=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q13);
-        Question q14=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q14);
-        Question q15=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q15);
-        Question q16=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q16);
-        Question q17=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q17);
-        Question q18=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q18);
-        Question q19=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q19);
-        Question q20=new Question("Which of the following is NOT an" +
-                " interpreted language?","Ruby","Python","BASIC","BASIC");
-        this.addQuestion(q20);
 
     }
     @Override

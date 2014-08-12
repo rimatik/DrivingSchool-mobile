@@ -32,11 +32,10 @@ public class QuizActivity extends Activity {
     List<Question> quesList;
     int score = 0;
     int qid = 0;
-    int serviceId = 0;
-    Question currentQ, prevQ;
+    Question currentQ, confirmedQ;
     TextView txtQuestion, tvVrijeme;
     RadioButton rda, rdb, rdc, answer;
-    Button butNext,butPrev;
+    Button butNext,butPrev,butConfirm;
     Intent serviceIntent;
     ImageView questionImage;
     Spinner questionPicker;
@@ -49,13 +48,14 @@ public class QuizActivity extends Activity {
 
         quesList = db.getAllQuestions();
         currentQ = quesList.get(qid);
-        prevQ = quesList.get(serviceId);
+        confirmedQ = quesList.get(qid);
         txtQuestion = (TextView) findViewById(R.id.textView1);
         rda = (RadioButton) findViewById(R.id.radio0);
         rdb = (RadioButton) findViewById(R.id.radio1);
         rdc = (RadioButton) findViewById(R.id.radio2);
         butNext = (Button) findViewById(R.id.bNext);
         butPrev = (Button) findViewById(R.id.bPrev);
+        butConfirm = (Button) findViewById(R.id.bConfirm);
         tvVrijeme = (TextView) findViewById(R.id.satPrikaz);
         serviceIntent = new Intent(QuizActivity.this, ResultActivity.class);
         questionImage = (ImageView) findViewById(R.id.iv_question_image);
@@ -82,19 +82,61 @@ public class QuizActivity extends Activity {
             }
         }.start();
 
-        butNext.setOnClickListener(new View.OnClickListener() {
+        butConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RadioGroup grp = (RadioGroup) findViewById(R.id.radioGroup1);
                 answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
 
-                if (currentQ.getANSWER().equals(answer.getText())) {
+                if(confirmedQ.getANSWER().equals(answer.getText())){
+                    if(qid <= 1){
+                        if (currentQ.getANSWER().equals(answer.getText())){
+                            confirmedQ.setANSWER((String)answer.getText());
+                            score++;
+                            Bundle b = new Bundle();
+                            b.putInt("score", score);
+                            serviceIntent.putExtras(b);
+                        }
+                        else{
 
+                            Bundle b = new Bundle();
+                            b.putInt("score", score);
+                            serviceIntent.putExtras(b);
+
+                        }
+                        }
+                       else{
+                        Bundle b = new Bundle();
+                        b.putInt("score", score);
+                        serviceIntent.putExtras(b);
+                    }
+                    }
+                else  {
+                   if (currentQ.getANSWER().equals(answer.getText())){
+                     confirmedQ.setANSWER((String)answer.getText());
                     score++;
                     Bundle b = new Bundle();
                     b.putInt("score", score);
                     serviceIntent.putExtras(b);
+                   }
+                   else{
+
+                       Bundle b = new Bundle();
+                       b.putInt("score", score);
+                       serviceIntent.putExtras(b);
+
+                   }
                 }
+
+
+            }
+
+        });
+
+        butNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 if (qid < 5) {
                     currentQ = quesList.get(qid);
                     Bundle b = new Bundle();
@@ -124,7 +166,6 @@ public class QuizActivity extends Activity {
                 } else{
                     qid = qid-2;
                     currentQ = quesList.get(qid);
-
                     setQuestionView();
 
 
@@ -168,6 +209,10 @@ public class QuizActivity extends Activity {
     }
 
     private void setQuestionViewPrev() {
+        if (qid == 0) {
+            return;
+        }
+        Question prevQ = quesList.get(qid - 1);
         txtQuestion.setText(prevQ.getQUESTION());
         rda.setText(prevQ.getOPTA());
         rdb.setText(prevQ.getOPTB());
