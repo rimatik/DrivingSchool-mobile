@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_autoskola_p1">
+    android:id="@+id/rlActivityQuiz">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Large Text"
-            android:textColor="@color/black"
+
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RadioGroup
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="RadioButton"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <RadioButton
 
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="RadioButton"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <RadioButton
 
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="RadioButton"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
 
         </RadioGroup>
@@ -97,15 +97,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
+
                 android:textSize="18sp"
                 android:layout_marginRight="10dp"
-                android:text="@string/choose_question" />
+                android:text="@string/choose_question"
+                />
 
             <Spinner
                 android:layout_width="100dp"
                 android:id="@+id/question_picker"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"/>
+
+
 
         </LinearLayout>
 

@@ -39,13 +39,13 @@ public class ResultActivity extends Activity implements View.OnClickListener{
         int score = b.getInt(Constants.KEY_SCORE);
         if (score < 2) {
             t.setText("Nažalost niste prošli test" + " sakupili ste ukupno: " + score + "/21" + " bodova!");
-            t.setTextColor(Color.RED);
-            t.setTextSize(20);
+            t.setTextColor(Color.WHITE);
+            t.setTextSize(25);
             slikaPrikaz.setImageResource(R.drawable.wrong_img);
         } else {
             t.setText("Uspješno ste položili test" + " sakupili ste ukupno: " + score + "/21" + " bodova!" + " Čestitamo!");
-            t.setTextColor(Color.BLACK);
-            t.setTextSize(20);
+            t.setTextColor(Color.WHITE);
+            t.setTextSize(25);
             slikaPrikaz.setImageResource(R.drawable.check_img);
         }
     }

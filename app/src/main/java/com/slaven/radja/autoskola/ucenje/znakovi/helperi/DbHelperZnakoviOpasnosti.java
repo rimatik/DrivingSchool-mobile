@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Computer on 09/08/2014.
  */
 public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 22;
     // Database Name
     private static final String DATABASE_NAME = "autoskolaQuiz";
     // tasks table name

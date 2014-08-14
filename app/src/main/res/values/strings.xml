@@ -5,8 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="choose_question">Odaberi pitanje: </string>
-    <string name="finish_quiz">Finish quiz</string>
-    <string name="next">Next</string>
+    <string name="finish_quiz">Završi ispit</string>
+    <string name="next">Sljedeće</string>
 
     <string-array name="titles">
         <item>Brzina kretanja</item>

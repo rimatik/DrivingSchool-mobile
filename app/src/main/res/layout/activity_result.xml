@@ -2,26 +2,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_autoskola_p1">
+    >
+    <RelativeLayout
+        android:layout_width="320dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textResult"
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textResult" />
 
     <Button
         android:id="@+id/bBack"
-        android:layout_width="100dp"
+        android:layout_width="151dp"
         android:layout_height="50dp"
         android:text="Back"
         android:layout_below="@+id/ivPrikazRezultat"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"/>
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/ivPrikazRezultat"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/bBack"
+        android:layout_alignStart="@+id/bBack" />
 </RelativeLayout>

@@ -6,6 +6,7 @@ package com.slaven.radja.autoskola.ispiti;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
@@ -42,12 +43,14 @@ public class QuizActivity extends Activity {
     private Spinner questionPicker;
     private CountDownTimer countDownTimer;
     private RadioGroup radioGroup;
+    private String bojaString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kviz);
         DbHelper db = new DbHelper(this);
+
 
         quesList = db.getAllQuestions();
         answers = new ArrayList<Integer>();
@@ -140,9 +143,10 @@ public class QuizActivity extends Activity {
         List<String> questions = new ArrayList<String>();
         for (int i = 0; i < quesList.size(); i++) {
             questions.add(String.valueOf(i + 1));
+
         }
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, questions);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_row, questions);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item_row);
         questionPicker.setAdapter(spinnerArrayAdapter);
         questionPicker.setOnItemSelectedListener(questionPickerListener);
     }
@@ -205,6 +209,7 @@ public class QuizActivity extends Activity {
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+            ((TextView) adapterView.getChildAt(0)).setTextColor(Color.BLACK);
             qid = position;
             currentQ = quesList.get(qid);
             setNextQuestionView();

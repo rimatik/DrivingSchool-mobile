@@ -13,9 +13,7 @@ import com.slaven.radja.autoskola.ucenje.znakovi.Znak;
 
 import java.util.List;
 
-/**
- * Created by fgrbac on 12/08/14.
- */
+
 public class SignsAdapter extends BaseAdapter {
 
     private Context context;
