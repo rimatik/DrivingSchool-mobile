@@ -18,11 +18,11 @@ import java.util.List;
  * Created by Computer on 09/08/2014.
  */
 public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 25;
     // Database Name
     private static final String DATABASE_NAME = "autoskolaQuiz";
     // tasks table name
-    private static final String TABLE_ZNAK_OPASNOSTI = "ZnakoviOpasnosti";
+    private static final String TABLE_ZNAK_OPASNOSTI = "znakoviOpasnosti";
     // tasks Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
@@ -55,6 +55,20 @@ public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
         this.addSign(z4);
         Znak z5=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
         this.addSign(z5);
+        Znak z6=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        this.addSign(z6);
+        Znak z7=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        this.addSign(z7);
+        Znak z8=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        this.addSign(z8);
+        Znak z9=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        this.addSign(z9);
+        Znak z10=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        this.addSign(z10);
+        Znak z11=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        this.addSign(z11);
+        Znak z12=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        this.addSign(z12);
 
 
 

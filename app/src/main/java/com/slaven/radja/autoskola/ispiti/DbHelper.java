@@ -17,7 +17,7 @@ import android.util.Log;
 import com.slaven.radja.autoskola.R;
 
 public class DbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 25;
     // Database Name
     private static final String DATABASE_NAME = "autoskolaQuiz";
     // tasks table name
