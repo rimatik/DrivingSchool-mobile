@@ -1,0 +1,27 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   app/src/main/res/drawable-hdpi/dopunska_strelica_desno.png
+#	new file:   app/src/main/res/drawable-hdpi/dopunska_strelica_lijevo.png
+#	new file:   app/src/main/res/drawable-hdpi/semafor_crveno.png
+#	new file:   "app/src/main/res/drawable-hdpi/semafor_crveno_\305\276uto.png"
+#	new file:   app/src/main/res/drawable-hdpi/semafor_zeleno.png
+#	new file:   "app/src/main/res/drawable-hdpi/semafor_\305\276uto.png"
+#	modified:   app/src/main/res/layout/prometni_semafor.xml
+#	modified:   app/src/main/res/layout/znakovi_izricitih_naredbi.xml
+#
+# Changes not staged for commit:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	deleted:    app/src/main/java/com/slaven/radja/autoskola/helpers/DisplayHelper.java
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizje_icon.png
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizjeicon.png
+#	deleted:    app/src/main/res/drawable-hdpi/triangle.png
+#	deleted:    app/src/main/res/layout/activity_quiz.xml
+#
+
