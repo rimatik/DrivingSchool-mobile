@@ -1,16 +1,16 @@
-package com.slaven.radja.autoskola.ucenje;
+package com.slaven.radja.autoskola.activities.ucenje;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.slaven.radja.autoskola.R;
+import com.slaven.radja.autoskola.activities.BaseActivity;
 
 /**
  * Created by Computer on 05/08/2014.
  */
-public class BrzinaKretanja extends Activity {
+public class BrzinaKretanja extends BaseActivity {
 
     TextView tvBrzina,tvNaslov;
 
@@ -18,6 +18,8 @@ public class BrzinaKretanja extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.brzina_kretanja);
+        rootView = findViewById(R.id.root_view);
+        setBackground();
 
         tvNaslov = (TextView) findViewById(R.id.tvNaslov);
         tvBrzina = (TextView) findViewById(R.id.tvBrzinaKretanja);

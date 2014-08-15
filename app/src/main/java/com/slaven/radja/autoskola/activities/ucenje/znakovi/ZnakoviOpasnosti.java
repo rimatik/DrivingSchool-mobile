@@ -1,10 +1,8 @@
-package com.slaven.radja.autoskola.ucenje.znakovi;
+package com.slaven.radja.autoskola.activities.ucenje.znakovi;
 
 import android.app.Activity;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,10 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.slaven.radja.autoskola.R;
-
-import com.slaven.radja.autoskola.ucenje.znakovi.helperi.DbHelperZnakoviOpasnosti;
-
-
+import com.slaven.radja.autoskola.activities.BaseActivity;
+import com.slaven.radja.autoskola.helpers.DbHelperZnakoviOpasnosti;
+import com.slaven.radja.autoskola.models.Znak;
 
 import java.util.List;
 
@@ -23,7 +20,7 @@ import java.util.List;
 /**
  * Created by Computer on 10/08/2014.
  */
-public class ZnakoviOpasnosti extends Activity {
+public class ZnakoviOpasnosti extends BaseActivity {
 
     List<Znak> signList;
 
@@ -39,6 +36,8 @@ public class ZnakoviOpasnosti extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.znakovi);
+        rootView = findViewById(R.id.root_view);
+        setBackground();
         DbHelperZnakoviOpasnosti db = new DbHelperZnakoviOpasnosti(this);
 
         signList = db.getAllSigns();

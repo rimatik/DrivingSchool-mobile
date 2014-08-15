@@ -1,4 +1,4 @@
-package com.slaven.radja.autoskola.ucenje.znakovi.helperi;
+package com.slaven.radja.autoskola.helpers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,8 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.slaven.radja.autoskola.R;
-import com.slaven.radja.autoskola.ucenje.znakovi.Znak;
-
+import com.slaven.radja.autoskola.models.Znak;
 
 import java.util.ArrayList;
 import java.util.List;

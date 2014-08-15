@@ -1,32 +1,28 @@
-package com.slaven.radja.autoskola.ispiti;
+package com.slaven.radja.autoskola.activities;
 
-import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.slaven.radja.autoskola.Constants;
+import com.slaven.radja.autoskola.R;
 
 /**
  * Created by Computer on 07/08/2014.
  */
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
-import com.slaven.radja.autoskola.Constants;
-import com.slaven.radja.autoskola.Home;
-import com.slaven.radja.autoskola.R;
-
-public class ResultActivity extends Activity implements View.OnClickListener{
+public class ResultActivity extends BaseActivity implements View.OnClickListener{
     Button back;
     ImageView slikaPrikaz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        rootView = findViewById(R.id.root_view);
+        setBackground();
 //get button back
         back = (Button) findViewById(R.id.bBack);
         back.setOnClickListener(this);

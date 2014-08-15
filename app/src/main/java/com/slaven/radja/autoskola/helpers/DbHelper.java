@@ -1,12 +1,10 @@
-package com.slaven.radja.autoskola.ispiti;
+package com.slaven.radja.autoskola.helpers;
 
 /**
  * Created by Computer on 06/08/2014.
  */
 
 
-import java.util.ArrayList;
-import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -15,6 +13,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.slaven.radja.autoskola.R;
+import com.slaven.radja.autoskola.models.Question;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 25;

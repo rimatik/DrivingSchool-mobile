@@ -1,124 +1,116 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home"
-    >
+    tools:context=".Home">
 
 
-                <GridLayout
-                    android:rowCount="2"
-                    android:columnCount="2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+    <GridLayout
+        android:rowCount="2"
+        android:columnCount="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-                    android:id="@+id/gridLayout"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="105dp">
+        android:id="@+id/gridLayout"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp">
 
-                    <RelativeLayout>
-                        <TextView
-                            android:text="Učenje"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
-                           android:layout_below="@+id/ivUcenje"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="15dp"/>
+        <RelativeLayout>
 
-                        <ImageView
-                            android:layout_gravity="fill_horizontal"
-                            android:src="@drawable/notes"
-                             android:layout_width="130dp"
-                            android:layout_height="60dp"
+            <TextView
+                android:text="Učenje"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/ivUcenje"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp" />
 
-                            android:id="@+id/ivUcenje"
+            <ImageView
+                android:layout_gravity="fill_horizontal"
+                android:src="@drawable/notes"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
 
-                            />
-                    </RelativeLayout>
+                android:id="@+id/ivUcenje"
 
-                    <RelativeLayout>
-                        <TextView
-                            android:text="Ispiti"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
-                            android:layout_below="@+id/ivIspiti"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="15dp"/>
-                        <ImageView
-                            android:src="@drawable/ispiti"
-                            android:id="@+id/ivIspiti"
+                />
+        </RelativeLayout>
 
-                            android:layout_width="130dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="fill_horizontal"
-                            />
+        <RelativeLayout>
 
-                       </RelativeLayout>
+            <TextView
+                android:text="Ispiti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/ivIspiti"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp" />
 
+            <ImageView
+                android:src="@drawable/ispiti"
+                android:id="@+id/ivIspiti"
 
-                    <RelativeLayout>
-                        <TextView
-                            android:text="Postavke"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
-                            android:layout_below="@+id/ivSettings"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="15dp"/>
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_gravity="fill_horizontal" />
 
-                        <ImageView
-                            android:layout_gravity="fill_horizontal"
-                            android:src="@drawable/postavke"
-                            android:layout_width="130dp"
-                            android:layout_height="60dp"
-
-                            android:id="@+id/ivSettings"
-
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true" />
-                    </RelativeLayout>
-                    <RelativeLayout>
-                        <TextView
-                            android:text="Informacije"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#ffffff"
-                            android:layout_below="@+id/ivInfo"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="15dp"/>
-
-                        <ImageView
-
-                            android:layout_gravity="fill_horizontal"
-                            android:src="@drawable/info"
-                            android:layout_width="130dp"
-                            android:layout_height="60dp"
+        </RelativeLayout>
 
 
-                            android:id="@+id/ivInfo"
+        <RelativeLayout>
 
-                            />
-                    </RelativeLayout>
+            <TextView
+                android:text="Postavke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/ivSettings"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:layout_gravity="fill_horizontal"
+                android:src="@drawable/postavke"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+
+                android:id="@+id/ivSettings"
+
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+        <RelativeLayout>
+
+            <TextView
+                android:text="Informacije"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/ivInfo"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp" />
+
+            <ImageView
+
+                android:layout_gravity="fill_horizontal"
+                android:src="@drawable/info"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
 
 
+                android:id="@+id/ivInfo"
 
-                </GridLayout>
-
-
-
-
+                />
+        </RelativeLayout>
 
 
-
-
-
-
-
+    </GridLayout>
 
 
 </RelativeLayout>

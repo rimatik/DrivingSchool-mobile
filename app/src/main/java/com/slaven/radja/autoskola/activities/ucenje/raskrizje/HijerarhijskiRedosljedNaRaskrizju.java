@@ -1,4 +1,4 @@
-package com.slaven.radja.autoskola.ucenje.raskrizje;
+package com.slaven.radja.autoskola.activities.ucenje.raskrizje;
 
 import android.app.Activity;
 

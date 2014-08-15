@@ -1,4 +1,4 @@
-package com.slaven.radja.autoskola.ucenje.raskrizje;
+package com.slaven.radja.autoskola.activities.ucenje.raskrizje;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,12 +15,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.slaven.radja.autoskola.R;
+import com.slaven.radja.autoskola.activities.BaseActivity;
 
 
 /**
  * Created by Computer on 05/08/2014.
  */
-public class Raskrizje extends Activity implements AdapterView.OnItemClickListener{
+public class Raskrizje extends BaseActivity implements AdapterView.OnItemClickListener{
 
     ListView list;
     String[] titles;
@@ -34,6 +35,8 @@ public class Raskrizje extends Activity implements AdapterView.OnItemClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.raskrizje);
+        rootView = findViewById(R.id.root_view);
+        setBackground();
 
         Resources res = getResources();
         titles = res.getStringArray(R.array.titlesRaskrsca);
