@@ -1,6 +1,5 @@
 package com.slaven.radja.autoskola.activities.ucenje.znakovi;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.GridView;
@@ -8,13 +7,8 @@ import android.widget.GridView;
 import com.slaven.radja.autoskola.R;
 import com.slaven.radja.autoskola.activities.BaseActivity;
 import com.slaven.radja.autoskola.adapters.SignsAdapter;
-
-
 import com.slaven.radja.autoskola.helpers.DbHelperZnakoviOpasnosti;
-
-
 import com.slaven.radja.autoskola.models.Znak;
-
 
 import java.util.List;
 

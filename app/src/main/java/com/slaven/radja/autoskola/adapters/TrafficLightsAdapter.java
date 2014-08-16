@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.slaven.radja.autoskola.R;
-import com.slaven.radja.autoskola.ucenje.znakovi.Semafor;
-
+import com.slaven.radja.autoskola.models.Semafor;
 
 import java.util.List;
 

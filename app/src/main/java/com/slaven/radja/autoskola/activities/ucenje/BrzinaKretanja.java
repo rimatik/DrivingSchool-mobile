@@ -1,6 +1,5 @@
 package com.slaven.radja.autoskola.activities.ucenje;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 

@@ -1,6 +1,5 @@
 package com.slaven.radja.autoskola.activities.ucenje.znakovi;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import com.slaven.radja.autoskola.R;
