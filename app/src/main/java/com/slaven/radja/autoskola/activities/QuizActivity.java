@@ -1,10 +1,9 @@
-package com.slaven.radja.autoskola.ispiti;
+package com.slaven.radja.autoskola.activities;
 
 /**
  * Created by Computer on 06/08/2014.
  */
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,12 +22,14 @@ import android.widget.TextView;
 
 import com.slaven.radja.autoskola.Constants;
 import com.slaven.radja.autoskola.R;
+import com.slaven.radja.autoskola.helpers.DbHelper;
+import com.slaven.radja.autoskola.models.Question;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class QuizActivity extends Activity {
+public class QuizActivity extends BaseActivity {
 
     private List<Question> quesList;
     private List<Integer> answers;
@@ -43,12 +44,13 @@ public class QuizActivity extends Activity {
     private Spinner questionPicker;
     private CountDownTimer countDownTimer;
     private RadioGroup radioGroup;
-    private String bojaString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kviz);
+        rootView = findViewById(R.id.root_view);
+        setBackground();
         DbHelper db = new DbHelper(this);
 
 

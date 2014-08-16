@@ -1,4 +1,4 @@
-package com.slaven.radja.autoskola.ucenje.znakovi;
+package com.slaven.radja.autoskola.activities.ucenje.znakovi;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,11 +15,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.slaven.radja.autoskola.R;
+import com.slaven.radja.autoskola.activities.BaseActivity;
 
 /**
  * Created by Computer on 09/08/2014.
  */
-public class PrometniZnakovi extends Activity implements AdapterView.OnItemClickListener{
+public class PrometniZnakovi extends BaseActivity implements AdapterView.OnItemClickListener{
 
     ListView list;
     String[] titles;
@@ -33,6 +34,8 @@ public class PrometniZnakovi extends Activity implements AdapterView.OnItemClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prometni_znakovi);
+        rootView = findViewById(R.id.root_view);
+        setBackground();
 
         Resources res = getResources();
         titles = res.getStringArray(R.array.titlesZnakovi);

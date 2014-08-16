@@ -1,6 +1,5 @@
-package com.slaven.radja.autoskola.ucenje;
+package com.slaven.radja.autoskola.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -14,15 +13,19 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import com.slaven.radja.autoskola.R;
-import com.slaven.radja.autoskola.ucenje.raskrizje.Raskrizje;
-import com.slaven.radja.autoskola.ucenje.znakovi.PrometniZnakovi;
+import com.slaven.radja.autoskola.activities.ucenje.BrzinaKretanja;
+import com.slaven.radja.autoskola.activities.ucenje.KruzniTokRotor;
+import com.slaven.radja.autoskola.activities.ucenje.PrometniSemafor;
+import com.slaven.radja.autoskola.activities.ucenje.ZaustavljanjeiParkiranje;
+import com.slaven.radja.autoskola.activities.ucenje.raskrizje.Raskrizje;
+import com.slaven.radja.autoskola.activities.ucenje.znakovi.PrometniZnakovi;
+
 
 /**
  * Created by Computer on 05/08/2014.
  */
-public class UcenjeLista extends Activity implements AdapterView.OnItemClickListener{
+public class UcenjeLista extends BaseActivity implements AdapterView.OnItemClickListener{
 
     ListView list;
     String[] titles;
@@ -36,7 +39,8 @@ int[] images ={R.drawable.brzina__icon,R.drawable.stop_icon, R.drawable.semafor_
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ucenje_lista);
-
+        rootView = findViewById(R.id.root_view);
+        setBackground();
         Resources res = getResources();
         titles = res.getStringArray(R.array.titles);
 

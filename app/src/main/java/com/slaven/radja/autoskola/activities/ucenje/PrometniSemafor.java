@@ -1,4 +1,4 @@
-package com.slaven.radja.autoskola.ucenje;
+package com.slaven.radja.autoskola.activities.ucenje;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,16 +9,19 @@ import com.slaven.radja.autoskola.R;
 import com.slaven.radja.autoskola.adapters.SignsAdapter;
 import com.slaven.radja.autoskola.adapters.TrafficLightsAdapter;
 import com.slaven.radja.autoskola.ucenje.znakovi.Semafor;
-import com.slaven.radja.autoskola.ucenje.znakovi.Znak;
+import com.slaven.radja.autoskola.models.Znak;
 import com.slaven.radja.autoskola.ucenje.znakovi.helperi.DbHelperPrometniSemafor;
-import com.slaven.radja.autoskola.ucenje.znakovi.helperi.DbHelperZnakoviOpasnosti;
+import com.slaven.radja.autoskola.helpers.DbHelperZnakoviOpasnosti;
 
 import java.util.List;
+
+import com.slaven.radja.autoskola.activities.BaseActivity;
+
 
 /**
  * Created by Computer on 05/08/2014.
  */
-public class PrometniSemafor extends Activity {
+public class PrometniSemafor extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,10 @@ public class PrometniSemafor extends Activity {
         List<Semafor> semafori = dbHelper.getAllTrafficLights();
         TrafficLightsAdapter adapter = new TrafficLightsAdapter(this, semafori);
         prohibitorySigns.setAdapter(adapter);
+
+
+        rootView = findViewById(R.id.root_view);
+        setBackground();
 
     }
 }

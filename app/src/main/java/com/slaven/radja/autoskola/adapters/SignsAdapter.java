@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.slaven.radja.autoskola.R;
-import com.slaven.radja.autoskola.ucenje.znakovi.Znak;
+import com.slaven.radja.autoskola.models.Znak;
 
 import java.util.List;
 

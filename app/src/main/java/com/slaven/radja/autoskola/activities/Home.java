@@ -1,6 +1,5 @@
-package com.slaven.radja.autoskola;
+package com.slaven.radja.autoskola.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,17 +7,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.slaven.radja.autoskola.ispiti.QuizActivity;
-import com.slaven.radja.autoskola.ucenje.UcenjeLista;
+import com.slaven.radja.autoskola.R;
 
 
-public class Home extends Activity implements View.OnClickListener{
+public class Home extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        rootView = findViewById(R.id.root_view);
         ImageView imgUcenje = (ImageView) findViewById(R.id.ivUcenje);
         ImageView imgIspiti = (ImageView) findViewById(R.id.ivIspiti);
         ImageView imgPostavke = (ImageView) findViewById(R.id.ivSettings);
@@ -31,6 +29,11 @@ public class Home extends Activity implements View.OnClickListener{
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setBackground();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

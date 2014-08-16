@@ -1,4 +1,4 @@
-package com.slaven.radja.autoskola.ispiti;
+package com.slaven.radja.autoskola.models;
 
 /**
  * Created by Computer on 06/08/2014.

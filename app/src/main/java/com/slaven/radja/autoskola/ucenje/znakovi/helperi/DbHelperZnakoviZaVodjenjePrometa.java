@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.slaven.radja.autoskola.R;
-import com.slaven.radja.autoskola.ucenje.znakovi.Znak;
+import com.slaven.radja.autoskola.models.Znak;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +45,7 @@ public class DbHelperZnakoviZaVodjenjePrometa extends SQLiteOpenHelper {
     }
     private void addSigns()
     {
+
         Znak z1=new Znak("Potvrda smjera", R.drawable.zvp_potvrda_smjera);
         this.addSign(z1);
         Znak z2=new Znak("Predputokaz",R.drawable.zvp_predputokaz);
