@@ -1,0 +1,115 @@
+﻿Merge branch 'master' of https://bitbucket.org/fgrbac/auto_skola
+
+Conflicts:
+	app/src/main/res/layout/znakovi_izricitih_naredbi.xml
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 4 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	modified:   .gitignore
+#	modified:   app/src/main/AndroidManifest.xml
+#	new file:   app/src/main/java/com/slaven/radja/autoskola/adapters/TrafficLightsAdapter.java
+#	modified:   app/src/main/java/com/slaven/radja/autoskola/ispiti/DbHelper.java
+#	modified:   app/src/main/java/com/slaven/radja/autoskola/ucenje/BrzinaKretanja.java
+#	modified:   app/src/main/java/com/slaven/radja/autoskola/ucenje/PrometniSemafor.java
+#	new file:   app/src/main/java/com/slaven/radja/autoskola/ucenje/znakovi/Semafor.java
+#	modified:   app/src/main/java/com/slaven/radja/autoskola/ucenje/znakovi/Znak.java
+#	modified:   app/src/main/java/com/slaven/radja/autoskola/ucenje/znakovi/ZnakoviIzricitihNaredbi.java
+#	modified:   app/src/main/java/com/slaven/radja/autoskola/ucenje/znakovi/ZnakoviOpasnosti.java
+#	new file:   app/src/main/java/com/slaven/radja/autoskola/ucenje/znakovi/helperi/DbHelperPrometniSemafor.java
+#	new file:   app/src/main/java/com/slaven/radja/autoskola/ucenje/znakovi/helperi/DbHelperZnakoviIzricitihNaredbi.java
+#	modified:   app/src/main/java/com/slaven/radja/autoskola/ucenje/znakovi/helperi/DbHelperZnakoviOpasnosti.java
+#	new file:   app/src/main/res/drawable-hdpi/semafor_crveno_zuto.png
+#	new file:   app/src/main/res/drawable-hdpi/semafor_zuto.png
+#	new file:   app/src/main/res/drawable-hdpi/zeleno_trepetavo_svijetlo_img.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_obavezno_zaustavljanje.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_raskrizje_s_cestom_koja_ima_prednost_prolaza.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_u_jednom_smjeru.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_u_oba_smjera.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_autobuse.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_bicikle.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_cisterne.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_mopede.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_mopede_i_bicikle.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_motocikle.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_pjesake.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_rucna_kolica.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_sva_motorna_vozila.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_sva_motorna_vozila_osim_za_motocikle_bez_prikolice_i_mopede.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_teretne_automobile.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_traktore.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_vozila_cija_sirina_prelazi_odredjenu_sirinu.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_vozila_cija_ukupna_masa_prelazi_odredjenu_masu.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_vozila_cija_ukupna_visina_prelazi_odredjenu_visinu.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_vozila_koja_prevoze_eksploziv_ili_neke_lakozapaljive_tvari.png
+#	new file:   app/src/main/res/drawable-hdpi/zi_zabrana_prometa_za_zaprezna_vozila.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_dvostruki_zavoj_ili_vise_uzastopnih_zavoja_od_kojih_je_prvi_udesno.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_dvostruki_zavoj_ili_vise_uzastopnih_zavoja_od_kojih_je_prvi_ulijevo.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_kamenje_pada.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_kamenje_prsti.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_nailazak_na_prometna_svijetla.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_neravan_kolnik.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_opasna_nizbrdica.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_opasna_uzbrdica.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_opasnost_na_cesti.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_raskrizje_cesta_iste_vaznosti.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_raskrizje_sa_sporednom_cestom_pod_pravim_kutom.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_sklizak_kolnik.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_spajanje_sporedne_ceste_pod_ostrim_kutom_s_desne_strane.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_spajanje_sporedne_ceste_pod_ostrim_kutom_s_lijeve_strane.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_spajanje_sporedne_ceste_pod_pravim_kutom_s_desne_strane.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_suzenje_ceste.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_suzenje_ceste_s_desne_strane.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_suzenje_ceste_s_lijeve_strane.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_zavoj_u_desno.png
+#	new file:   app/src/main/res/drawable-hdpi/zo_zavoj_u_lijevo.png
+#	new file:   app/src/main/res/drawable-hdpi/zuto_trepetavo_svijetlo_img.png
+#	modified:   app/src/main/res/layout/brzina_kretanja.xml
+#	modified:   app/src/main/res/layout/list_item_sign.xml
+#	new file:   app/src/main/res/layout/list_item_trafficlights.xml
+#	modified:   app/src/main/res/layout/prometni_semafor.xml
+#	modified:   app/src/main/res/layout/znakovi_izricitih_naredbi.xml
+#	modified:   app/src/main/res/values/styles.xml
+#
+# Changes not staged for commit:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	deleted:    app/src/main/java/com/slaven/radja/autoskola/helpers/DisplayHelper.java
+#	deleted:    app/src/main/res/drawable-hdpi/hijerarhijskiicon.png
+#	deleted:    app/src/main/res/drawable-hdpi/policajacicon.png
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizje_ceste_iste_vaznosti_img.png
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizje_icon.png
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizje_iste_vaznosti_img.png
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizje_iste_vaznosti_thumb.png
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizje_sa_sporednom_cestom_pod_pravim_kutom_img.png
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizje_sa_sporednom_cestom_pod_pravim_kutom_thumb.png
+#	deleted:    app/src/main/res/drawable-hdpi/raskrizjeicon.png
+#	deleted:    "app/src/main/res/drawable-hdpi/semafor_crveno_\305\276uto.png"
+#	deleted:    "app/src/main/res/drawable-hdpi/semafor_\305\276uto.png"
+#	deleted:    app/src/main/res/drawable-hdpi/skolska_patrola_img.png
+#	deleted:    app/src/main/res/drawable-hdpi/spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img.png
+#	deleted:    app/src/main/res/drawable-hdpi/spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_thumb.png
+#	deleted:    app/src/main/res/drawable-hdpi/triangle.png
+#	deleted:    app/src/main/res/drawable-hdpi/zabrana_prometa_u_jednom_smjeru_img.png
+#	deleted:    app/src/main/res/drawable-hdpi/znak_icon.png
+#	deleted:    app/src/main/res/drawable-hdpi/znak_opasnosti_img.png
+#	deleted:    app/src/main/res/layout/activity_quiz.xml
+#
+

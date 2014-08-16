@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Computer on 09/08/2014.
  */
 public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 25;
+    private static final int DATABASE_VERSION = 37;
     // Database Name
     private static final String DATABASE_NAME = "autoskolaQuiz";
     // tasks table name
@@ -45,32 +45,48 @@ public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
     }
     private void addSigns()
     {
-        Znak z1=new Znak("Križanje cesta iste važnosti",R.drawable.raskrizje_iste_vaznosti_img);
+        Znak z1=new Znak("Raskrizje cesta iste važnosti",R.drawable.zo_raskrizje_cesta_iste_vaznosti);
         this.addSign(z1);
-        Znak z2=new Znak("Zabrana prometa u jednom smjeru",R.drawable.zabrana_prometa_img);
+        Znak z2=new Znak("Dvostruki zavoj ili više uzastopnih zavoja od kojih je prvi udesno",R.drawable.zo_dvostruki_zavoj_ili_vise_uzastopnih_zavoja_od_kojih_je_prvi_udesno);
         this.addSign(z2);
-        Znak z3=new Znak("Raskrižje sa sporednom cestom pod pravim kutom",R.drawable.raskrizje_sa_sporednom_cestom_pod_pravim_kutom_img);
+        Znak z3=new Znak("Dvostruki zavoj ili više uzastopnih zavoja od kojih je prvi ulijevo",R.drawable.zo_dvostruki_zavoj_ili_vise_uzastopnih_zavoja_od_kojih_je_prvi_ulijevo);
         this.addSign(z3);
-        Znak z4=new Znak("Školska patrola",R.drawable.skolska_patrola_img);
+        Znak z4=new Znak("Pada kamenje",R.drawable.zo_kamenje_pada);
         this.addSign(z4);
-        Znak z5=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        Znak z5=new Znak("Kamenje pršti",R.drawable.zo_kamenje_prsti);
         this.addSign(z5);
-        Znak z6=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        Znak z6=new Znak("Nailazak na prometna svijetla",R.drawable.zo_nailazak_na_prometna_svijetla);
         this.addSign(z6);
-        Znak z7=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        Znak z7=new Znak("Neravni kolnik",R.drawable.zo_neravan_kolnik);
         this.addSign(z7);
-        Znak z8=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        Znak z8=new Znak("Opasna nizbrdica",R.drawable.zo_opasna_nizbrdica);
         this.addSign(z8);
-        Znak z9=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        Znak z9=new Znak("Opasna uzbrdica",R.drawable.zo_opasna_uzbrdica);
         this.addSign(z9);
-        Znak z10=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        Znak z10=new Znak("Raskrižje sa sporednom cestom pod pravim kutom",R.drawable.zo_raskrizje_sa_sporednom_cestom_pod_pravim_kutom);
         this.addSign(z10);
-        Znak z11=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        Znak z11=new Znak("Sklizak kolnik",R.drawable.zo_sklizak_kolnik);
         this.addSign(z11);
-        Znak z12=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane_img);
+        Znak z12=new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane",R.drawable.zo_spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane);
         this.addSign(z12);
-
-
+        Znak z13=new Znak("Spajanje sporedne ceste pod pravim kutom s desne strane",R.drawable.zo_spajanje_sporedne_ceste_pod_pravim_kutom_s_desne_strane);
+        this.addSign(z13);
+        Znak z14=new Znak("Spajanje sporedne ceste pod oštrim kutom s desne strane",R.drawable.zo_spajanje_sporedne_ceste_pod_ostrim_kutom_s_desne_strane);
+        this.addSign(z14);
+        Znak z15=new Znak("Spajanje sporedne ceste pod oštrim kutom s lijeve strane",R.drawable.zo_spajanje_sporedne_ceste_pod_ostrim_kutom_s_lijeve_strane);
+        this.addSign(z15);
+        Znak z16=new Znak("Suženje ceste",R.drawable.zo_suzenje_ceste);
+        this.addSign(z16);
+        Znak z17=new Znak("Suženje ceste s desne strane",R.drawable.zo_suzenje_ceste_s_desne_strane);
+        this.addSign(z17);
+        Znak z18=new Znak("Suženje ceste s lijeve strane",R.drawable.zo_suzenje_ceste_s_lijeve_strane);
+        this.addSign(z18);
+        Znak z19=new Znak("Zavoj u desno",R.drawable.zo_zavoj_u_desno);
+        this.addSign(z19);
+        Znak z20=new Znak("Zavoj u lijevo",R.drawable.zo_zavoj_u_lijevo);
+        this.addSign(z20);
+        Znak z21=new Znak("Zavoj u lijevo",R.drawable.zo_opasnost_na_cesti);
+        this.addSign(z21);
 
     }
     @Override

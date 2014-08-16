@@ -9,10 +9,12 @@ public class Znak {
     String name;
     int id_img;
 
+
     public Znak() {
         id = 0;
         name = "";
         id_img = 0;
+
     }
 
 
@@ -44,7 +46,5 @@ public class Znak {
     public void setId_img(int id_img) {
         this.id_img = id_img;
     }
-
-
 
 }

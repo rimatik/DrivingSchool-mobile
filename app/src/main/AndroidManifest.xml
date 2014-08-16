@@ -10,6 +10,7 @@
 
         <activity
             android:name=".Home"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,78 +21,97 @@
 
         <activity
             android:name=".ucenje.UcenjeLista"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".Postavke"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".Info"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ispiti.QuizActivity"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ispiti.ResultActivity"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.BrzinaKretanja"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.znakovi.PrometniZnakovi"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.znakovi.ZnakoviOpasnosti"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.znakovi.ZnakoviIzricitihNaredbi"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.znakovi.ZnakoviObavijesti"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.znakovi.ZnakoviZaVodjenjePrometa"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.znakovi.DopunskePloceUzZnakove"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.PrometniSemafor"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.raskrizje.Raskrizje"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.raskrizje.PrednostNaRaskrizju"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.raskrizje.PrometniPolicajacNaRaskrizju"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.raskrizje.HijerarhijskiRedosljedNaRaskrizju"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.ZaustavljanjeiParkiranje"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
         <activity
             android:name=".ucenje.KruzniTokRotor"
+            android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
     </application>

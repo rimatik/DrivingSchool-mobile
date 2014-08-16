@@ -12,17 +12,17 @@ import com.slaven.radja.autoskola.R;
  */
 public class BrzinaKretanja extends Activity {
 
-    TextView tvBrzina,tvNaslov;
+    TextView tvBrzina;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.brzina_kretanja);
 
-        tvNaslov = (TextView) findViewById(R.id.tvNaslov);
+
         tvBrzina = (TextView) findViewById(R.id.tvBrzinaKretanja);
 
-        tvNaslov.setText("Brzina kretanja");
+
         tvBrzina.setText("1.Vozač je dužan brzinu kretanja vozila prilagoditi osobinama i stanju ceste, vidljivosti preglednosti, atmosferskim prilikama, stanju vozila i tereta, gustoći pometa tako da vozilo može pravovremeno zaustaviti pred svakom zaprekom koju, u konkretnim uvjetima, može predvidjeti, odnosno da može pravovremeno postupiti prema prometnom pravilu ili znaku.\n \n" +
                 "Brzina kretanja vozila na cesti uz normalne prometne uvjete ne smije se ograničiti ispod 40 km na sat.\n \n" +
                 "Na cesti u naselju vozač se ne smije vozilom kretati brzinom većom od 50 km na sat, odnosno brzinom većom od brzine dopuštene postavljenim prometnim znakom za cijelo naselje ili njegov dio.\n \n" +
