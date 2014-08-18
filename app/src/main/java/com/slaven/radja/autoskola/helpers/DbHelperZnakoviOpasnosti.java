@@ -17,9 +17,9 @@ import java.util.List;
  * Created by Computer on 09/08/2014.
  */
 public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 37;
+    private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "autoskolaQuiz";
+    private static final String DATABASE_NAME = "autoskolaZnakoviOpasnosti.db";
     // tasks table name
     private static final String TABLE_ZNAK_OPASNOSTI = "znakoviOpasnosti";
     // tasks Table Columns names
@@ -84,7 +84,7 @@ public class DbHelperZnakoviOpasnosti extends SQLiteOpenHelper {
         this.addSign(z19);
         Znak z20=new Znak("Zavoj u lijevo",R.drawable.zo_zavoj_u_lijevo);
         this.addSign(z20);
-        Znak z21=new Znak("Zavoj u lijevo",R.drawable.zo_opasnost_na_cesti);
+        Znak z21=new Znak("Opasnost na cesti",R.drawable.zo_opasnost_na_cesti);
         this.addSign(z21);
 
     }

@@ -18,11 +18,11 @@ import java.util.List;
  * Created by Computer on 14/08/2014.
  */
 public class DbHelperPrometniSemafor extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 36;
+    private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "autoskolaQuiz";
+    private static final String DATABASE_NAME = "autoskola.db";
     // tasks table name
-    private static final String TABLE_PROMETNI_SEMAFOR = "prometniSemafor";
+    private static final String TABLE_PROMETNI_SEMAFOR = "Prometnisemafor";
     // tasks Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";

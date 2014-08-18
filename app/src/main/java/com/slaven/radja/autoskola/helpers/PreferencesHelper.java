@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-/**
- * Created by fgrbac on 15/08/14.
- */
+
 public class PreferencesHelper {
 
     public static SharedPreferences getSharedPrefs(Context context) {

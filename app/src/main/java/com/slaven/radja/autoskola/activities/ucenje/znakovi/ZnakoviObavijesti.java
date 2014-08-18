@@ -31,6 +31,7 @@ public class ZnakoviObavijesti extends BaseActivity {
         List<Znak> signs = dbHelper.getAllSigns();
         SignsAdapter adapter = new SignsAdapter(this, signs);
         prohibitorySigns.setAdapter(adapter);
+
     }
 
 }

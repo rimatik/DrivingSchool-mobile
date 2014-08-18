@@ -33,7 +33,7 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
 //get score
         Bundle b = getIntent().getExtras();
         int score = b.getInt(Constants.KEY_SCORE);
-        if (score < 2) {
+        if (score < 18) {
             t.setText("Nažalost niste prošli test" + " sakupili ste ukupno: " + score + "/21" + " bodova!");
             t.setTextColor(Color.WHITE);
             t.setTextSize(25);

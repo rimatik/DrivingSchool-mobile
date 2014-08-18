@@ -18,11 +18,11 @@ import java.util.List;
  */
 public class DbHelperDopunskePloceUzZnakove extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 40;
+    private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "autoskolaQuiz";
+    private static final String DATABASE_NAME = "autoskola.db";
     // tasks table name
-    private static final String TABLE_ZNAK_DOPUNSKE_PLOCE = "ZnakoviDopunskePloce";
+    private static final String TABLE_ZNAK_DOPUNSKE_PLOCE = "znakoviDopunskePloce";
     // tasks Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
@@ -45,49 +45,28 @@ public class DbHelperDopunskePloceUzZnakove extends SQLiteOpenHelper {
     }
     private void addSigns()
     {
-        Znak z1=new Znak("Obavezno zaustavljanje", R.drawable.zi_obavezno_zaustavljanje);
+        Znak z1=new Znak("", R.drawable.zdp_dodatni_glavna_cesta);
         this.addSign(z1);
-        Znak z2=new Znak("Raskrižje s cestom koja ima prednost prolaza",R.drawable.zi_raskrizje_s_cestom_koja_ima_prednost_prolaza);
+        Znak z2=new Znak("",R.drawable.zdp_dodatni_sporedna_cesta);
         this.addSign(z2);
-        Znak z3=new Znak("Zabrana prometa u oba smjera",R.drawable.zi_zabrana_prometa_u_oba_smjera);
+        Znak z3=new Znak("",R.drawable.zdp_kamjon);
         this.addSign(z3);
-        Znak z4=new Znak("Zabrana prometa za autobuse",R.drawable.zi_zabrana_prometa_za_autobuse);
+        Znak z4=new Znak("",R.drawable.zdp_kocka_sesto_metara);
         this.addSign(z4);
-        Znak z5=new Znak("Zabrana prometa za bicikle",R.drawable.zi_zabrana_prometa_za_bicikle);
+        Znak z5=new Znak("",R.drawable.zdp_kola_trazi);
         this.addSign(z5);
-        Znak z6=new Znak("Zabrana prometa za cisterne",R.drawable.zi_zabrana_prometa_za_cisterne);
+        Znak z6=new Znak("",R.drawable.zdp_osim_stanara);
         this.addSign(z6);
-        Znak z7=new Znak("Zabrana prometa za mopede",R.drawable.zi_zabrana_prometa_za_mopede);
+        Znak z7=new Znak("",R.drawable.zdp_parking_auto);
         this.addSign(z7);
-        Znak z8=new Znak("Zabrana prometa za mopede i bicikle",R.drawable.zi_zabrana_prometa_za_mopede_i_bicikle);
+        Znak z8=new Znak("",R.drawable.zdp_parking_invalid);
         this.addSign(z8);
-        Znak z9=new Znak("Zabrana prometa za motocikle",R.drawable.zi_zabrana_prometa_za_motocikle);
+        Znak z9=new Znak("",R.drawable.zdp_stop_sesto_metara);
         this.addSign(z9);
-        Znak z10=new Znak("Zabrana prometa za pješake",R.drawable.zi_zabrana_prometa_za_pjesake);
+        Znak z10=new Znak("",R.drawable.zdp_tri_znaka_sesto_metara);
         this.addSign(z10);
-        Znak z11=new Znak("Zabrana prometa za ručna kolica",R.drawable.zi_zabrana_prometa_za_rucna_kolica);
+        Znak z11=new Znak("",R.drawable.zdp_zabrana_parkiranja_cetiri_do_sest);
         this.addSign(z11);
-        Znak z12=new Znak("Zabrana prometa za sva motorna vozila",R.drawable.zi_zabrana_prometa_za_sva_motorna_vozila);
-        this.addSign(z12);
-        Znak z13=new Znak("Zabrana prometa za sva motorna vozila osim za motocikle bez prikolice i mopede",R.drawable.zi_zabrana_prometa_za_sva_motorna_vozila_osim_za_motocikle_bez_prikolice_i_mopede);
-        this.addSign(z13);
-        Znak z14=new Znak("Zabrana prometa za teretne automobile",R.drawable.zi_zabrana_prometa_za_teretne_automobile);
-        this.addSign(z14);
-        Znak z15=new Znak("Zabrana prometa za traktore",R.drawable.zi_zabrana_prometa_za_traktore);
-        this.addSign(z15);
-        Znak z16=new Znak("Zabrana prometa za vozila čija širina prelazi određenu širinu",R.drawable.zi_zabrana_prometa_za_vozila_cija_sirina_prelazi_odredjenu_sirinu);
-        this.addSign(z16);
-        Znak z17=new Znak("Zabrana prometa za vozila čija visina prelazi određenu visinu",R.drawable.zi_zabrana_prometa_za_vozila_cija_ukupna_visina_prelazi_odredjenu_visinu);
-        this.addSign(z17);
-        Znak z18=new Znak("Zabrana prometa za vozila čija ukupna masa prelazi određenu masu",R.drawable.zi_zabrana_prometa_za_vozila_cija_ukupna_masa_prelazi_odredjenu_masu);
-        this.addSign(z18);
-        Znak z19=new Znak("Zabrana prometa za vozila koja prevoze eksploziv ili neke lako zapaljive tvari",R.drawable.zi_zabrana_prometa_za_vozila_koja_prevoze_eksploziv_ili_neke_lakozapaljive_tvari);
-        this.addSign(z19);
-        Znak z20=new Znak("Zabrana prometa u jednom smjeru",R.drawable.zi_zabrana_prometa_u_jednom_smjeru);
-        this.addSign(z20);
-        Znak z21=new Znak("Zabrana za zaprežna vozila",R.drawable.zi_zabrana_prometa_za_zaprezna_vozila);
-        this.addSign(z21);
-
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {

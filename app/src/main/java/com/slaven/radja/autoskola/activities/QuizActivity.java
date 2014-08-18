@@ -76,7 +76,7 @@ public class QuizActivity extends BaseActivity {
         setupQuestionPickerSpinner();
         setNextQuestionView();
 
-        countDownTimer = new CountDownTimer(120000, 1000) {
+        countDownTimer = new CountDownTimer(1200000, 1000) {
 
             public void onTick(long millisUntilFinished) {
 

@@ -33,7 +33,7 @@ public class UcenjeLista extends BaseActivity implements AdapterView.OnItemClick
 
 
     public String lv_class_names[]= {BrzinaKretanja.class.getName(), PrometniZnakovi.class.getName(), PrometniSemafor.class.getName(), Raskrizje.class.getName(),ZaustavljanjeiParkiranje.class.getName(),KruzniTokRotor.class.getName()};
-int[] images ={R.drawable.brzina__icon,R.drawable.stop_icon, R.drawable.semafor_icon, R.drawable.crossroad_icon,R.drawable.parking_icon,R.drawable.kruznitok_icon};
+int[] images ={R.drawable.brzina__icon,R.drawable.stop_icon, R.drawable.semafor_icon, R.drawable.crossroad_icon,R.drawable.parking_icona,R.drawable.kruznitok_icon};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

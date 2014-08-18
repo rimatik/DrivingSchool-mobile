@@ -18,11 +18,11 @@ import java.util.List;
  */
 public class DbHelperZnakoviZaVodjenjePrometa extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 40;
+    private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "autoskolaQuiz";
+    private static final String DATABASE_NAME = "autoskola.db";
     // tasks table name
-    private static final String TABLE_ZNAK_VODJENJE_PROMETA = "ZnakoviZaVodjenjePrometa";
+    private static final String TABLE_ZNAK_VODJENJE_PROMETA = "znakoviZaVodjenjePrometa";
     // tasks Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";

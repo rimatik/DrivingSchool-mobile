@@ -18,11 +18,11 @@ import java.util.List;
  */
 public class DbHelperZnakoviObavijesti extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 38;
+    private static final int DATABASE_VERSION = 4;
     // Database Name
-    private static final String DATABASE_NAME = "autoskolaQuiz";
+    private static final String DATABASE_NAME = "autoskola.db";
     // tasks table name
-    private static final String TABLE_ZNAK_OBAVIJESTI = "ZnakoviObavijesti";
+    private static final String TABLE_ZNAK_OBAVIJESTI = "znakoviObavijesti";
     // tasks Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
@@ -91,10 +91,11 @@ public class DbHelperZnakoviObavijesti extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
-// Drop older table if existed
+        // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ZNAK_OBAVIJESTI);
-// Create tables again
+        // Create tables again
         onCreate(db);
+
     }
     // Adding new question
     public void addSign(Znak sign) {

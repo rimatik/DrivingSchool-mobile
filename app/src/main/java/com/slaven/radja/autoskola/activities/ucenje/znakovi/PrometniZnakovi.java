@@ -27,7 +27,7 @@ public class PrometniZnakovi extends BaseActivity implements AdapterView.OnItemC
 
 
     public String lv_class_names[]= {ZnakoviOpasnosti.class.getName(), ZnakoviIzricitihNaredbi.class.getName(), ZnakoviObavijesti.class.getName(), ZnakoviZaVodjenjePrometa.class.getName(),DopunskePloceUzZnakove.class.getName()};
-    int[] images ={R.drawable.znak_opasnosti_img,R.drawable.zabrana_prometa_img, R.drawable.obilijezen_pjesacki_prijelaz_img, R.drawable.putokazna_ploca_img,R.drawable.dopunske_ploce_uz_znakove_img};
+    int[] images ={R.drawable.znak_opasnosti_icon,R.drawable.zabrana_prometa_img, R.drawable.obilijezen_pjesacki_prijelaz_img, R.drawable.putokazna_ploca_img,R.drawable.dopunske_ploce_uz_znakove_img};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

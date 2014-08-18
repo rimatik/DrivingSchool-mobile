@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.slaven.radja.autoskola.R;
+import com.slaven.radja.autoskola.activities.ucenje.znakovi.ZnakoviObavijesti;
 
 
 public class Home extends BaseActivity implements View.OnClickListener{
