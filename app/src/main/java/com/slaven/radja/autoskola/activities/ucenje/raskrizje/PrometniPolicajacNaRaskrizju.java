@@ -9,7 +9,7 @@ import com.slaven.radja.autoskola.activities.BaseActivity;
 
 import com.slaven.radja.autoskola.adapters.PrometniPolicajacAdapter;
 
-import com.slaven.radja.autoskola.helpers.DbHelperPrometniPolicajac;
+import com.slaven.radja.autoskola.helpers.DbHelper;
 import com.slaven.radja.autoskola.models.Semafor;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class PrometniPolicajacNaRaskrizju extends BaseActivity {
         rootView = findViewById(R.id.root_view);
         setBackground();
         GridView prohibitorySigns = (GridView) rootView;
-        DbHelperPrometniPolicajac dbHelper = new DbHelperPrometniPolicajac(this);
+        DbHelper dbHelper = DbHelper.getInstance(this);
         List<Semafor> semafori = dbHelper.getAllCops();
         PrometniPolicajacAdapter adapter = new PrometniPolicajacAdapter(this, semafori);
         prohibitorySigns.setAdapter(adapter);

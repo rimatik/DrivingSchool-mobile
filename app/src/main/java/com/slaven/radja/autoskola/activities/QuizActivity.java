@@ -51,8 +51,7 @@ public class QuizActivity extends BaseActivity {
         setContentView(R.layout.activity_kviz);
         rootView = findViewById(R.id.root_view);
         setBackground();
-        DbHelper db = new DbHelper(this);
-
+        DbHelper db = DbHelper.getInstance(this);
 
         quesList = db.getAllQuestions();
         answers = new ArrayList<Integer>();
