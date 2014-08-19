@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.GridView;
 
+import com.slaven.radja.autoskola.DatabaseConstants;
 import com.slaven.radja.autoskola.R;
 import com.slaven.radja.autoskola.activities.BaseActivity;
 import com.slaven.radja.autoskola.adapters.SignsAdapter;
-import com.slaven.radja.autoskola.helpers.DbHelperZnakoviOpasnosti;
+import com.slaven.radja.autoskola.helpers.DbHelper;
 import com.slaven.radja.autoskola.models.Znak;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class ZnakoviOpasnosti extends BaseActivity {
         rootView = findViewById(R.id.root_view);
         setBackground();
         GridView prohibitorySigns = (GridView) rootView;
-        DbHelperZnakoviOpasnosti dbHelper = new DbHelperZnakoviOpasnosti(this);
-        List<Znak> signs = dbHelper.getAllSigns();
+        DbHelper dbHelper = DbHelper.getInstance(this);
+        List<Znak> signs = dbHelper.getAllSigns(DatabaseConstants.TABLE_ZNAK_OPASNOSTI);
         SignsAdapter adapter = new SignsAdapter(this, signs);
         prohibitorySigns.setAdapter(adapter);
     }
