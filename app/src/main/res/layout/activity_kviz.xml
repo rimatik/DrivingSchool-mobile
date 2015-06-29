@@ -32,39 +32,36 @@
             tools:text="Large Text"
             android:textSize="20dp" />
 
-        <RadioGroup
 
-            android:id="@+id/radioGroup1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <RadioButton
+            <CheckBox
 
-                android:id="@+id/radio0"
+                android:id="@+id/checkBox0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="RadioButton"
+                tools:text="CheckBox"
                 android:textColor="@color/white" />
 
-            <RadioButton
+            <CheckBox
 
 
-                android:id="@+id/radio1"
+                android:id="@+id/checkBox1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="RadioButton"
+                tools:text="CheckBox"
                 android:textColor="@color/white" />
 
-            <RadioButton
+            <CheckBox
 
-                android:id="@+id/radio2"
+                android:id="@+id/checkBox2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="RadioButton"
-                android:textColor="@color/white" />
+                tools:text="CheckBox"
+                android:textColor="@color/white"
+
+                />
 
 
-        </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,7 +81,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Sljedeće" />
+                android:text="Sljedeće"
+                />
 
         </LinearLayout>
 

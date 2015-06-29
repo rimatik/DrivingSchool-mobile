@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/blue"
+    android:clickable="true"
+    >
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/iv_FragmentPrikaz"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tv_FragmentPrikaz"
+        android:gravity="center"
+        android:layout_below="@+id/iv_FragmentPrikaz"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+       />
+
+<RelativeLayout
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/relativeLayout"
+    android:layout_marginBottom="57dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/icon_arrow_right"
+        android:id="@+id/iv_right"
+
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/iv_Menu" />
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/iv_Menu"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/menu_slika"
+
+        />
+
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/icon_arrow_left"
+        android:id="@+id/iv_left"
+        android:layout_toStartOf="@+id/iv_Menu"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/iv_Menu"
+        />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

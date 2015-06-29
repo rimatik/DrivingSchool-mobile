@@ -1,9 +1,15 @@
 package com.slaven.radja.autoskola.activities.ucenje.znakovi;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,86 +21,108 @@ import android.widget.TextView;
 
 import com.slaven.radja.autoskola.R;
 import com.slaven.radja.autoskola.activities.BaseActivity;
+import com.slaven.radja.autoskola.aplication.AutoskolaApp;
+import com.slaven.radja.autoskola.helpers.DbHelper;
+
+import java.util.List;
 
 /**
  * Created by Computer on 09/08/2014.
  */
-public class PrometniZnakovi extends BaseActivity implements AdapterView.OnItemClickListener{
+public class PrometniZnakovi extends FragmentActivity implements CommunicatorZnakovi{
 
-    ListView list;
-    String[] titles;
-
-
-
-    public String lv_class_names[]= {ZnakoviOpasnosti.class.getName(), ZnakoviIzricitihNaredbi.class.getName(), ZnakoviObavijesti.class.getName(), ZnakoviZaVodjenjePrometa.class.getName(),DopunskePloceUzZnakove.class.getName()};
-    int[] images ={R.drawable.znak_opasnosti_icon,R.drawable.zabrana_prometa_img, R.drawable.obilijezen_pjesacki_prijelaz_img, R.drawable.putokazna_ploca_img,R.drawable.dopunske_ploce_uz_znakove_img};
+    ViewPager viewPager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prometni_znakovi);
-        rootView = findViewById(R.id.root_view);
-        setBackground();
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        viewPager.setAdapter(new FragmentAdapter(fragmentManager));
 
-        Resources res = getResources();
-        titles = res.getStringArray(R.array.titlesZnakovi);
-
-        list =(ListView) findViewById(R.id.listView);
-        PrometniZnakoviAdapter adapter = new PrometniZnakoviAdapter(this,titles,images);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(this);
 
     }
-
-
-
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
-
-        Intent i = null;
-        try {
-            i = new Intent(this, Class.forName(lv_class_names[position]));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        startActivity(i);
-
-
-
+    public void respond(int i) {
+        FragmentManager manager = getFragmentManager();
+        android.app.Fragment f2;
+       // f2 = manager.findFragmentById(R.id.fragmentSviZnakovi);
     }
+
 
 
 }
-class PrometniZnakoviAdapter extends ArrayAdapter<String>
-{
-    Context context;
-    int[] images;
-    String[] titles;
-    PrometniZnakoviAdapter(Context c,String [] titles,int images[])
-    {
-        super(c,R.layout.prometni_znakovi,R.id.textView,titles);
-        this.images=images;
-        this.context=c;
-        this.titles = titles;
+class FragmentAdapter extends FragmentPagerAdapter {
 
+
+    public FragmentAdapter(android.support.v4.app.FragmentManager fm) {
+        super(fm);
     }
-
-
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public Fragment getItem(int i) {
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(R.layout.redznakovi,parent,false);
+        Fragment fragment = null;
+        if(i == 0){
+          fragment = new FragmentZnakovi();
 
-        ImageView myImage = (ImageView) row.findViewById(R.id.imageView);
-        TextView myText = (TextView) row.findViewById(R.id.textView);
+        }
+        if(i == 1){
+           fragment = new ZnakoviOpasnosti();
 
-        myImage.setImageResource(images[position]);
-        myText.setText(titles[position]);
+        }
+        if(i == 2){
+            fragment = new ZnakoviIzricitihNaredbi();
 
-        return row;
+        }
+        if(i == 3){
+            fragment = new ZnakoviObavijesti();
+
+        }
+        if(i == 4){
+            fragment = new ZnakoviZaVodjenjePrometa();
+
+        }
+        if(i == 5){
+            fragment = new DopunskePloceUzZnakove();
+
+        }
+        AutoskolaApp.setSelectedFragmentId(fragment.getId());
+        AutoskolaApp.setFragment(fragment);
+        return fragment;
     }
+
+    @Override
+    public int getCount() {
+        return 6;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+
+        if(position == 0){
+            return "Svi znakovi";
+        }
+        if(position == 1){
+            return "Znakovi opasnosti";
+        }
+        if(position == 2){
+            return "Znakovi izričitih naredbi";
+        }
+        if(position == 3){
+            return "Znakovi obavijesti";
+        }
+        if(position == 4){
+            return "Znakovi za vođenje prometa";
+        }
+        if(position == 5){
+            return "Dopunske ploče uz znakove";
+        }
+        return  null;
+
+
+    }
+
 }

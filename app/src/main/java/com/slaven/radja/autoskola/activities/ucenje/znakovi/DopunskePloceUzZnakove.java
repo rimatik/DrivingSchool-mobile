@@ -1,6 +1,11 @@
 package com.slaven.radja.autoskola.activities.ucenje.znakovi;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.GridView;
 
@@ -16,18 +21,13 @@ import java.util.List;
 /**
  * Created by Computer on 10/08/2014.
  */
-public class DopunskePloceUzZnakove extends BaseActivity {
+public class DopunskePloceUzZnakove extends ListFragment {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.znakovi_izricitih_naredbi);
-        rootView = findViewById(R.id.root_view);
-        setBackground();
-        GridView prohibitorySigns = (GridView) rootView;
-        DbHelper dbHelper = DbHelper.getInstance(this);
-        List<Znak> signs = dbHelper.getAllSigns(DatabaseConstants.TABLE_ZNAK_DOPUNSKE_PLOCE);
-        SignsAdapter adapter = new SignsAdapter(this, signs);
-        prohibitorySigns.setAdapter(adapter);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.dopunske_ploce_uz_znakove, null, false);
     }
+
 }

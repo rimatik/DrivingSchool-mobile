@@ -9,21 +9,34 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 
 import com.slaven.radja.autoskola.DatabaseConstants;
 import com.slaven.radja.autoskola.R;
+import com.slaven.radja.autoskola.aplication.AutoskolaApp;
 import com.slaven.radja.autoskola.models.Question;
 import com.slaven.radja.autoskola.models.Semafor;
 import com.slaven.radja.autoskola.models.Znak;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class DbHelper extends SQLiteOpenHelper {
 
-    private SQLiteDatabase sqLiteDatabase;
+
+    public static SQLiteDatabase sqLiteDatabase;
+
 
     public static DbHelper instance;
+
+    int position;
+    int idSign;
+
 
     public static DbHelper getInstance(Context context) {
         if (instance == null) {
@@ -32,7 +45,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return instance;
     }
 
-    private DbHelper(Context context) {
+    public DbHelper(Context context) {
         super(context, DatabaseConstants.DATABASE_NAME, null, DatabaseConstants.DATABASE_VERSION);
     }
 
@@ -40,33 +53,22 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         sqLiteDatabase = db;
         createAndPopulateQuestionsTable(db);
-        createAndPopulateDopunskePloceUzZnakoveTable(db);
         createAndPopulateCrossroadAdvantageSignsTable(db);
         createAndPopulateTrafficOfficerSignsTable(db);
         createAndPopulateTrafficSemaforSigns(db);
-        createAndPopulateMandatorySignsTable(db);
-        createAndPopulateInformationSigns(db);
         createAndPopulateDangerSigns(db);
-        createAndPopulateTrafficLeadingSigns(db);
     }
 
     private void createAndPopulateQuestionsTable(SQLiteDatabase dbase) {
         String sql = "CREATE TABLE IF NOT EXISTS " + DatabaseConstants.TABLE_QUEST + " ( "
                 + DatabaseConstants.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DatabaseConstants.KEY_QUES
-                + " TEXT, " + DatabaseConstants.KEY_ANSWER + " TEXT, " + DatabaseConstants.KEY_OPTA + " TEXT, "
+                + " TEXT, " + DatabaseConstants.KEY_ANSWER_ONE + " TEXT, " + DatabaseConstants.KEY_ANSWER_TWO + " TEXT, " + DatabaseConstants.KEY_OPTA + " TEXT, "
                 + DatabaseConstants.KEY_OPTB + " TEXT, " + DatabaseConstants.KEY_OPTC + " TEXT, " + DatabaseConstants.KEY_IMAGE_ID + " INTEGER, " + DatabaseConstants.KEY_HAS_IMAGE + " INTEGER, "
-                + DatabaseConstants.KEY_CORRECT_ANSWER + " INTEGER)";
+                + DatabaseConstants.KEY_CORRECT_ANSWER_ONE + " INTEGER, " + DatabaseConstants.KEY_CORRECT_ANSWER_TWO + " INTEGER, " + DatabaseConstants.KEY_ONE_OR_TWO_ANSWERS + " INTEGER)";
         dbase.execSQL(sql);
         addQuestions();
     }
 
-    private void createAndPopulateDopunskePloceUzZnakoveTable(SQLiteDatabase dbase) {
-        String sql = "CREATE TABLE IF NOT EXISTS " + DatabaseConstants.TABLE_ZNAK_DOPUNSKE_PLOCE + " ( "
-                + DatabaseConstants.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DatabaseConstants.KEY_NAME
-                + " TEXT, " + DatabaseConstants.KEY_ID_IMG + " INTEGER) ";
-        dbase.execSQL(sql);
-        addExtraBoardSigns(DatabaseConstants.TABLE_ZNAK_DOPUNSKE_PLOCE);
-    }
 
     private void createAndPopulateCrossroadAdvantageSignsTable(SQLiteDatabase dbase) {
         String sql = "CREATE TABLE IF NOT EXISTS " + DatabaseConstants.TABLE_PREDNOST_NA_RASKRIZJU + " ( "
@@ -92,38 +94,17 @@ public class DbHelper extends SQLiteOpenHelper {
         addTrafficLightsSemafor(DatabaseConstants.TABLE_PROMETNI_SEMAFOR);
     }
 
-    private void createAndPopulateMandatorySignsTable(SQLiteDatabase db) {
-        String sql = "CREATE TABLE IF NOT EXISTS " + DatabaseConstants.TABLE_ZNAK_IZRICITIH_NAREDBI + " ( "
-                + DatabaseConstants.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DatabaseConstants.KEY_NAME
-                + " TEXT, " + DatabaseConstants.KEY_ID_IMG + " INTEGER) ";
-        db.execSQL(sql);
-        addMandatorySigns(DatabaseConstants.TABLE_ZNAK_IZRICITIH_NAREDBI);
-    }
-
-    private void createAndPopulateInformationSigns(SQLiteDatabase db) {
-
-        String sql = "CREATE TABLE IF NOT EXISTS " + DatabaseConstants.TABLE_ZNAK_OBAVIJESTI + " ( "
-                + DatabaseConstants.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DatabaseConstants.KEY_NAME
-                + " TEXT, " + DatabaseConstants.KEY_ID_IMG + " INTEGER) ";
-        db.execSQL(sql);
-        addInformationSigns(DatabaseConstants.TABLE_ZNAK_OBAVIJESTI);
-    }
-
-
     private void createAndPopulateDangerSigns(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS " + DatabaseConstants.TABLE_ZNAK_OPASNOSTI + " ( "
-                + DatabaseConstants.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DatabaseConstants.KEY_NAME
-                + " TEXT, " + DatabaseConstants.KEY_ID_IMG + " INTEGER) ";
+                + DatabaseConstants.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DatabaseConstants.KEY_ID_IMG + " BLOB, " + DatabaseConstants.KEY_POSITION + " INTEGER)";
         db.execSQL(sql);
-        addDangerSigns(DatabaseConstants.TABLE_ZNAK_OPASNOSTI);
+        addDangerSign(DatabaseConstants.TABLE_ZNAK_OPASNOSTI);
     }
-
-    private void createAndPopulateTrafficLeadingSigns(SQLiteDatabase db) {
-        String sql = "CREATE TABLE IF NOT EXISTS " + DatabaseConstants.TABLE_ZNAK_VODJENJE_PROMETA + " ( "
-                + DatabaseConstants.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DatabaseConstants.KEY_NAME
-                + " TEXT, " + DatabaseConstants.KEY_ID_IMG + " INTEGER) ";
+    private void createAndPopulateDangerSignFirst(SQLiteDatabase db) {
+        String sql = "CREATE TABLE IF NOT EXISTS " + DatabaseConstants.TABLE_ZNAK_OPASNOSTI + " ( "
+                + DatabaseConstants.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DatabaseConstants.KEY_ID_IMG + " BLOB, " + DatabaseConstants.KEY_POSITION + " INTEGER)";
         db.execSQL(sql);
-        addTrafficLeadingSigns(DatabaseConstants.TABLE_ZNAK_VODJENJE_PROMETA);
+        addDangerSignFirst(DatabaseConstants.TABLE_ZNAK_OPASNOSTI);
     }
 
     @Override
@@ -132,96 +113,34 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private void addDangerSigns(String tableName) {
-        Znak z1 = new Znak("Raskrizje cesta iste važnosti", R.drawable.zo_raskrizje_cesta_iste_vaznosti);
-        this.addSign(z1, tableName);
-        Znak z2 = new Znak("Dvostruki zavoj ili više uzastopnih zavoja od kojih je prvi udesno", R.drawable.zo_dvostruki_zavoj_ili_vise_uzastopnih_zavoja_od_kojih_je_prvi_udesno);
-        this.addSign(z2, tableName);
-        Znak z3 = new Znak("Dvostruki zavoj ili više uzastopnih zavoja od kojih je prvi ulijevo", R.drawable.zo_dvostruki_zavoj_ili_vise_uzastopnih_zavoja_od_kojih_je_prvi_ulijevo);
-        this.addSign(z3, tableName);
-        Znak z4 = new Znak("Pada kamenje", R.drawable.zo_kamenje_pada);
-        this.addSign(z4, tableName);
-        Znak z5 = new Znak("Kamenje pršti", R.drawable.zo_kamenje_prsti);
-        this.addSign(z5, tableName);
-        Znak z6 = new Znak("Nailazak na prometna svijetla", R.drawable.zo_nailazak_na_prometna_svijetla);
-        this.addSign(z6, tableName);
-        Znak z7 = new Znak("Neravni kolnik", R.drawable.zo_neravan_kolnik);
-        this.addSign(z7, tableName);
-        Znak z8 = new Znak("Opasna nizbrdica", R.drawable.zo_opasna_nizbrdica);
-        this.addSign(z8, tableName);
-        Znak z9 = new Znak("Opasna uzbrdica", R.drawable.zo_opasna_uzbrdica);
-        this.addSign(z9, tableName);
-        Znak z10 = new Znak("Raskrižje sa sporednom cestom pod pravim kutom", R.drawable.zo_raskrizje_sa_sporednom_cestom_pod_pravim_kutom);
-        this.addSign(z10, tableName);
-        Znak z11 = new Znak("Sklizak kolnik", R.drawable.zo_sklizak_kolnik);
-        this.addSign(z11, tableName);
-        Znak z12 = new Znak("Spajanje sporedne ceste pod pravim kutom s lijeve strane", R.drawable.zo_spajanje_sporedne_ceste_pod_pravim_kutom_s_lijeve_strane);
-        this.addSign(z12, tableName);
-        Znak z13 = new Znak("Spajanje sporedne ceste pod pravim kutom s desne strane", R.drawable.zo_spajanje_sporedne_ceste_pod_pravim_kutom_s_desne_strane);
-        this.addSign(z13, tableName);
-        Znak z14 = new Znak("Spajanje sporedne ceste pod oštrim kutom s desne strane", R.drawable.zo_spajanje_sporedne_ceste_pod_ostrim_kutom_s_desne_strane);
-        this.addSign(z14, tableName);
-        Znak z15 = new Znak("Spajanje sporedne ceste pod oštrim kutom s lijeve strane", R.drawable.zo_spajanje_sporedne_ceste_pod_ostrim_kutom_s_lijeve_strane);
-        this.addSign(z15, tableName);
-        Znak z16 = new Znak("Suženje ceste", R.drawable.zo_suzenje_ceste);
-        this.addSign(z16, tableName);
-        Znak z17 = new Znak("Suženje ceste s desne strane", R.drawable.zo_suzenje_ceste_s_desne_strane);
-        this.addSign(z17, tableName);
-        Znak z18 = new Znak("Suženje ceste s lijeve strane", R.drawable.zo_suzenje_ceste_s_lijeve_strane);
-        this.addSign(z18, tableName);
-        Znak z19 = new Znak("Zavoj u desno", R.drawable.zo_zavoj_u_desno);
-        this.addSign(z19, tableName);
-        Znak z20 = new Znak("Zavoj u lijevo", R.drawable.zo_zavoj_u_lijevo);
-        this.addSign(z20, tableName);
-        Znak z21 = new Znak("Opasnost na cesti", R.drawable.zo_opasnost_na_cesti);
-        this.addSign(z21, tableName);
-    }
+        public void addDangerSign(String tableName) {
 
-    private void addMandatorySigns(String tableName) {
-        Znak z1 = new Znak("Obavezno zaustavljanje", R.drawable.zi_obavezno_zaustavljanje);
-        this.addSign(z1, tableName);
-        Znak z2 = new Znak("Raskrižje s cestom koja ima prednost prolaza", R.drawable.zi_raskrizje_s_cestom_koja_ima_prednost_prolaza);
-        this.addSign(z2, tableName);
-        Znak z3 = new Znak("Zabrana prometa u oba smjera", R.drawable.zi_zabrana_prometa_u_oba_smjera);
-        this.addSign(z3, tableName);
-        Znak z4 = new Znak("Zabrana prometa za autobuse", R.drawable.zi_zabrana_prometa_za_autobuse);
-        this.addSign(z4, tableName);
-        Znak z5 = new Znak("Zabrana prometa za bicikle", R.drawable.zi_zabrana_prometa_za_bicikle);
-        this.addSign(z5, tableName);
-        Znak z6 = new Znak("Zabrana prometa za cisterne", R.drawable.zi_zabrana_prometa_za_cisterne);
-        this.addSign(z6, tableName);
-        Znak z7 = new Znak("Zabrana prometa za mopede", R.drawable.zi_zabrana_prometa_za_mopede);
-        this.addSign(z7, tableName);
-        Znak z8 = new Znak("Zabrana prometa za mopede i bicikle", R.drawable.zi_zabrana_prometa_za_mopede_i_bicikle);
-        this.addSign(z8, tableName);
-        Znak z9 = new Znak("Zabrana prometa za motocikle", R.drawable.zi_zabrana_prometa_za_motocikle);
-        this.addSign(z9, tableName);
-        Znak z10 = new Znak("Zabrana prometa za pješake", R.drawable.zi_zabrana_prometa_za_pjesake);
-        this.addSign(z10, tableName);
-        Znak z11 = new Znak("Zabrana prometa za ručna kolica", R.drawable.zi_zabrana_prometa_za_rucna_kolica);
-        this.addSign(z11, tableName);
-        Znak z12 = new Znak("Zabrana prometa za sva motorna vozila", R.drawable.zi_zabrana_prometa_za_sva_motorna_vozila);
-        this.addSign(z12, tableName);
-        Znak z13 = new Znak("Zabrana prometa za sva motorna vozila osim za motocikle bez prikolice i mopede", R.drawable.zi_zabrana_prometa_za_sva_motorna_vozila_osim_za_motocikle_bez_prikolice_i_mopede);
-        this.addSign(z13, tableName);
-        Znak z14 = new Znak("Zabrana prometa za teretne automobile", R.drawable.zi_zabrana_prometa_za_teretne_automobile);
-        this.addSign(z14, tableName);
-        Znak z15 = new Znak("Zabrana prometa za traktore", R.drawable.zi_zabrana_prometa_za_traktore);
-        this.addSign(z15, tableName);
-        Znak z16 = new Znak("Zabrana prometa za vozila čija širina prelazi određenu širinu", R.drawable.zi_zabrana_prometa_za_vozila_cija_sirina_prelazi_odredjenu_sirinu);
-        this.addSign(z16, tableName);
-        Znak z17 = new Znak("Zabrana prometa za vozila čija visina prelazi određenu visinu", R.drawable.zi_zabrana_prometa_za_vozila_cija_ukupna_visina_prelazi_odredjenu_visinu);
-        this.addSign(z17, tableName);
-        Znak z18 = new Znak("Zabrana prometa za vozila čija ukupna masa prelazi određenu masu", R.drawable.zi_zabrana_prometa_za_vozila_cija_ukupna_masa_prelazi_odredjenu_masu);
-        this.addSign(z18, tableName);
-        Znak z19 = new Znak("Zabrana prometa za vozila koja prevoze eksploziv ili neke lako zapaljive tvari", R.drawable.zi_zabrana_prometa_za_vozila_koja_prevoze_eksploziv_ili_neke_lakozapaljive_tvari);
-        this.addSign(z19, tableName);
-        Znak z20 = new Znak("Zabrana prometa u jednom smjeru", R.drawable.zi_zabrana_prometa_u_jednom_smjeru);
-        this.addSign(z20, tableName);
-        Znak z21 = new Znak("Zabrana za zaprežna vozila", R.drawable.zi_zabrana_prometa_za_zaprezna_vozila);
-        this.addSign(z21, tableName);
+        idSign = AutoskolaApp.getPosition();
+        position = idSign * 100;
+        Bitmap signBitmap = BitmapFactory.decodeResource(AutoskolaApp.getAppContext().getResources(), R.drawable.bitmap_znakovi_opasnosti);
+        signBitmap = Bitmap.createBitmap(signBitmap, position, 0, 99, 106);
+        ByteArrayOutputStream bosSign = new ByteArrayOutputStream();
+        signBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bosSign);
+        byte[] byteSign = bosSign.toByteArray();
+        Znak z = new Znak(byteSign, idSign);
+        this.addSign(z, tableName);
 
     }
+
+    public void addDangerSignFirst(String tableName) {
+
+
+        position = 0;
+        Bitmap signBitmap = BitmapFactory.decodeResource(AutoskolaApp.getAppContext().getResources(), R.drawable.bitmap_znakovi_opasnosti);
+        signBitmap = Bitmap.createBitmap(signBitmap, position, 0, 99, 106);
+        ByteArrayOutputStream bosSign = new ByteArrayOutputStream();
+        signBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bosSign);
+        byte[] byteSign = bosSign.toByteArray();
+        Znak z = new Znak(byteSign, position);
+        this.addSign(z, tableName);
+
+    }
+
 
     private void addTrafficLightsOfficer(String tableName) {
         Semafor z1 = new Semafor("Obavezno zaustavljanje", R.drawable.obvezno_zaustavljanje, true);
@@ -251,98 +170,112 @@ public class DbHelper extends SQLiteOpenHelper {
     private void addQuestions() {
 
         Question q1 = new Question("1. Zbog čega je vožnja pod utjecajem alkohola opasna?",
-                "Alkohol bitno povećava vozačeve sposobnosti", "Alkohol skraćuje vrijeme reagiranja vozaču ", "Alkohol produžuje vrijeme reagiranja vozača", "Alkohol produžuje vrijeme reagiranja vozača", -1, false, 2);
+                "Vozač teže procjenjuje udaljenost", "Alkohol skraćuje vrijeme reagiranja vozaču ",
+                "Alkohol produžuje vrijeme reagiranja vozača", "Vozač teže procjenjuje udaljenost",
+                "Alkohol produžuje vrijeme reagiranja vozača", -1, false, 0, 2, 2);
         this.addQuestion(q1);
         Question q2 = new Question("2. Na što morate paziti kod ovog prometnog znaka?"
-                , "Na obilaznu cestu", "Moram povećati brzinu", "Nailazi desni zavoj", "Nailazi desni zavoj", R.drawable.slikadva, true, 2);
+                , "Na obilaznu cestu", "Brzina mora biti prilagođena uvjetima vožnje",
+                "Nailazi desni zavoj", "Brzina mora biti prilagođena uvjetima vožnje", "Nailazi desni zavoj",
+                R.drawable.slikadva, true, 1, 2, 2);
         this.addQuestion(q2);
         Question q3 = new Question("3. Što je vozač obavezan napraviti ako namjerava voziti unatrag?"
-                , "Uključiti sve pokazivače smjera", "Uključiti desni pokazivač smjera", "Uključiti lijevi pokazivač smjera", "Uključiti sve pokazivače smjera", -1, false, 0);
+                , "Uključiti sve pokazivače smjera", "Uključiti desni pokazivač smjera", "Voziti samo na kratkom dijelu ceste, ako time ne ugrožava ili ne ometa druge sudionike u prometu",
+                "Uključiti sve pokazivače smjera",
+                "Voziti samo na kratkom dijelu ceste, ako time ne ugrožava ili ne ometa druge sudionike u prometu",
+                -1, false, 0, 2, 2);
         this.addQuestion(q3);
         Question q4 = new Question("4. Što pokazuje ovaj prometni znak?"
-                , "Obavezan smjer vožnje", "Raskrižje cesta iste važnosti", "Položaj ceste s pravom prednosti prolaska", "Položaj ceste s pravom prednosti prolaska", R.drawable.slikadvadesetiosam, true, 2);
+                , "Obavezan smjer vožnje", "Raskrižje cesta iste važnosti", "Položaj ceste s pravom prednosti prolaska",
+                "Položaj ceste s pravom prednosti prolaska", "", R.drawable.slikadvadesetiosam, true, 2, -1, 1);
         this.addQuestion(q4);
         Question q5 = new Question("5. Približavate se ovom raskrižju. Kako ćete postupiti?"
-                , "Voziti prije autobusa", "Propustiti autobus", "Propustiti crveni automobil", "Propustiti autobus", R.drawable.slikadeset, true, 1);
+                , "Voziti prije autobusa", "Propustiti autobus", "Propustiti crveni automobil",
+                "Propustiti autobus", "", R.drawable.slikadeset, true, 1, -1, 1);
         this.addQuestion(q5);
-        Question q6 = new Question("6. Koja svijetla, u pravilu, vozač motornog vozila upotrebljava za osvijetljavanje ceste?"
-                , "Kratka ili dnevna svijetla", "Pozicijska svijetla", "Duga svijetla", "Duga svijetla", -1, false, 2);
+        Question q6 = new Question("6. Koja svijetla, u pravilu, vozač motornog vozila upotrebljava" +
+                " za osvijetljavanje ceste?"
+                , "Kratka ili dnevna svijetla", "Pozicijska svijetla",
+                "Duga svijetla", "Duga svijetla", "", -1, false, 2, -1, 1);
         this.addQuestion(q6);
         Question q7 = new Question("7. Vozač crnog automobila skreće udesno kao na slici, što mora učiniti?"
-                , "Propustiti biciklistu", "Skrenuti prije bicikliste", "Potrubiti", "Propustiti biciklistu", R.drawable.slikatridesetsest, true, 0);
+                , "Propustiti biciklistu", "Skrenuti prije bicikliste",
+                "Potrubiti", "Propustiti biciklistu", "", R.drawable.slikatridesetsest, true, 0, -1, 1);
         this.addQuestion(q7);
         Question q8 = new Question("8. Na što ukazuje ovaj prometni znak?"
-                , "Na početak ceste namijenjene isključivo za promet motornih vozila", "Na to da je dozovljena vožnja samo osobnim automobilima", "Na ograničenje brzine na 90 km/h", "Na početak ceste namijenjene isključivo za promet motornih vozila", R.drawable.slikasesnaest, true, 0);
+                , "Na početak ceste namijenjene isključivo za promet motornih vozila",
+                "Na to da je dozovljena vožnja samo osobnim automobilima",
+                "Na ograničenje brzine kretanja 110 km/h", "Na početak ceste namijenjene isključivo za promet motornih vozila",
+                "Na ograničenje brzine kretanja 110 km/h", R.drawable.slikasesnaest, true, 0, 2, 2);
         this.addQuestion(q8);
         Question q9 = new Question("9. Što je cesta?"
-                , "Cesta je svaka javna cesta na kojoj se odvija promet isključivo motornih vozila", "Cesta je svaka javna cesta i nerazvrstana cesta na kojoj se obavlja promet", "Cesta je svaka javna površina kojom se odvija promet", "Cesta je svaka javna cesta i nerazvrstana cesta na kojoj se obavlja promet", -1, false, 1);
+                , "Cesta je svaka javna cesta na kojoj se odvija promet isključivo motornih vozila",
+                "Cesta je svaka javna cesta i nerazvrstana cesta na kojoj se obavlja promet",
+                "Cesta je svaka javna površina kojom se odvija promet",
+                "Cesta je svaka javna cesta i nerazvrstana cesta na kojoj se obavlja promet", "", -1, false, 1, -1, 1);
         this.addQuestion(q9);
         Question q10 = new Question("10. Kako ćete postupiti u ovoj situaciji?"
-                , "Propustiti vozilo iz suprotnog smjera", "Proći prije vozila iz suprotnog smjera", "Povećati brzinu", "Propustiti vozilo iz suprotnog smjera", R.drawable.slikaprva, true, 0);
+                , "Propustiti vozilo iz suprotnog smjera", "Proći prije vozila iz suprotnog smjera",
+                "Smanjiti brzinu i prema potrebi zaustaviti vozilo", "Propustiti vozilo iz suprotnog smjera",
+                "Smanjiti brzinu i prema potrebi zaustaviti vozilo", R.drawable.slikaprva, true, 0, 2, 2);
         this.addQuestion(q10);
         Question q11 = new Question("11. Je li na ovom dijelu ceste, s obzirom na oznake na kolniku pretjecanje dopušteno?"
-                , "Da dopušteno je jer ne postoji prometni znak zabrane", "Dopušteno je nakon što prođu vozila iz suprotnog smjera", "Ne, nije dopušteno", "Ne, nije dopušteno", R.drawable.slikasest, true, 2);
+                , "Da dopušteno je jer ne postoji prometni znak zabrane",
+                "Dopušteno je nakon što prođu vozila iz suprotnog smjera",
+                "Ne, nije dopušteno", "Ne, nije dopušteno", "", R.drawable.slikasest, true, 2, -1, 1);
         this.addQuestion(q11);
         Question q12 = new Question("12. Na cesti izvan naselja zaustavljeno je vozilo zbog kvara. " +
-                "Na kojoj udaljenosti morate postaviti sigurnosni trokut iza zaustavljenog vozila na kolniku."
-                , "Minimalno 80 metara iza vozila", "Minimalno 100 metara iza vozila", "Minimalno 50 metara iza vozila", "Minimalno 100 metara iza vozila", -1, false, 1);
+                "Na kojoj udaljenosti morate postaviti sigurnosni trokut iza zaustavljenog vozila na kolniku?"
+                , "Minimalno 80 metara iza vozila", "Minimalno 100 metara iza vozila",
+                "Minimalno 50 metara iza vozila", "Minimalno 100 metara iza vozila", "", -1, false, 1, -1, 1);
         this.addQuestion(q12);
         Question q13 = new Question("13. Približavate se ovom raskrižju. Kako ćete postupiti?"
-                , "Propustiti autobus i motocikl", "Propustiti autobus i voziti prije motocikla", "Voziti prije autobusa i propustiti motocikl", "Voziti prije autobusa i propustiti motocikl", R.drawable.slikatridesetidva, true, 2);
+                , "Voziti prije autobusa", "Propustiti motocikl", "Propustiti autobus",
+                "Voziti prije autobusa", "Propustiti motocikl", R.drawable.slikatridesetidva, true, 0, 1, 2);
         this.addQuestion(q13);
         Question q14 = new Question("14. Kako djeca najčešće reagiraju u prometu?"
-                , "Spontano i nepredvidivo", "U skladu s propisima", "Razborito i staloženo", "Spontano i nepredvidivo", -1, false, 0);
+                , "Spontano i nepredvidivo", "U skladu s propisima", "Razborito i staloženo",
+                "Spontano i nepredvidivo", "", -1, false, 0, -1, 1);
         this.addQuestion(q14);
         Question q15 = new Question("15. Na instrument ploči upaljena je plava žaruljica kao na slici. Što to znači?"
-                , "Da vozim sa svijetlima za maglu", "Da vozim s dugim svijetlima", "Da vozim s kratkim svijetlima", "Da vozim s dugim svijetlima", R.drawable.slikatrideset, true, 1);
+                , "Da vozim sa svijetlima za maglu", "Da vozim s dugim svijetlima",
+                "Da vozim s kratkim svijetlima", "Da vozim s dugim svijetlima", "", R.drawable.slikatrideset, true, 1, -1, 1);
         this.addQuestion(q15);
         Question q16 = new Question("16. Kako ćete postupiti u ovoj situaciji?"
-                , "Voziti kroz raskrižje", "Propustiti crveni automobil", "Propustiti automobil iz suprotnog smjera", "Propustiti automobil iz suprotnog smjera", R.drawable.slikadvadeseticetiri, true, 2);
+                , "Voziti kroz raskrižje", "Voziti prije crvenog automobila",
+                "Propustiti automobil iz suprotnog smjera", "Voziti prije crvenog automobila",
+                "Propustiti automobil iz suprotnog smjera", R.drawable.slikadvadeseticetiri, true, 1, 2, 2);
         this.addQuestion(q16);
         Question q17 = new Question("17. S čime morate računati u situaciji kao na slici?"
-                , "Na to da me dijete ne vidi", "Na to da će me dijete sigurno vidjeti", "Da će dijete pravilno reagirati", "Na to da me dijete ne vidi", R.drawable.slikatridesetcetiri, true, 0);
+                , "Na to da me dijete ne vidi", "Na to da će me dijete sigurno vidjeti",
+                "Da će dijete pravilno reagirati", "Na to da me dijete ne vidi", "",
+                R.drawable.slikatridesetcetiri, true, 0, -1, 1);
         this.addQuestion(q17);
-        Question q18 = new Question("18. Vašim osobnim automobilom vučete priključno vozilo bez kočnica autocestom. Kojom brzinom najviše smijete voziti?"
-                , "30 km/h", "60 km/h", "90 km/h", "90 km/h", -1, false, 2);
+        Question q18 = new Question("18. Vašim osobnim automobilom vučete priključno vozilo bez kočnica autocestom." +
+                " Kojom brzinom najviše smijete voziti?"
+                , "30 km/h", "60 km/h", "90 km/h", "90 km/h", "", -1, false, 2, -1, 1);
         this.addQuestion(q18);
         Question q19 = new Question("19. Kako ćete postupiti pri vožnji za jakog vjetra?"
-                , "Ubrzati i što prije proći dionicu ceste s jakim vjetrom", "Smanjiti brzinu vožnje", "Pri mimoilaženju držati što manji bočni razmak", "Smanjiti brzinu vožnje", -1, false, 1);
+                , "Ubrzati i što prije proći dionicu ceste s jakim vjetrom", "Smanjiti brzinu vožnje",
+                "Pri mimoilaženju držati što veći bočni razmak", "Smanjiti brzinu vožnje",
+                "Pri mimoilaženju držati što veći bočni razmak", -1, false, 1, 2, 2);
         this.addQuestion(q19);
         Question q20 = new Question("20. Kako ćete postupiti nakon ovog prometnog znaka?"
-                , "Bez smanjenja brzine nastaviti vožnju jer znak zabranjuje djeci prelazak preko ceste", "Očekivati nailazak djece koja namjeravaju prijeći kolnik", "Povećati brzinu", "Očekivati nailazak djece koja namjeravaju prijeći kolnik", R.drawable.slikatridesetosam, true, 1);
+                , "Bez smanjenja brzine nastaviti vožnju jer znak zabranjuje djeci prelazak preko ceste",
+                "Očekivati nailazak djece koja namjeravaju prijeći kolnik",
+                "Smanjiti brzinu i biti pripravan za kočenje i zaustavljanje",
+                "Očekivati nailazak djece koja namjeravaju prijeći kolnik",
+                "Smanjiti brzinu i biti pripravan za kočenje i zaustavljanje", R.drawable.slikatridesetosam, true, 1, 2, 2);
         this.addQuestion(q20);
 
     }
 
-    private void addExtraBoardSigns(String tableName) {
-        Znak z1 = new Znak("", R.drawable.zdp_dodatni_glavna_cesta);
-        this.addSign(z1, tableName);
-        Znak z2 = new Znak("", R.drawable.zdp_dodatni_sporedna_cesta);
-        this.addSign(z2, tableName);
-        Znak z3 = new Znak("", R.drawable.zdp_kamjon);
-        this.addSign(z3, tableName);
-        Znak z4 = new Znak("", R.drawable.zdp_kocka_sesto_metara);
-        this.addSign(z4, tableName);
-        Znak z5 = new Znak("", R.drawable.zdp_kola_trazi);
-        this.addSign(z5, tableName);
-        Znak z6 = new Znak("", R.drawable.zdp_osim_stanara);
-        this.addSign(z6, tableName);
-        Znak z7 = new Znak("", R.drawable.zdp_parking_auto);
-        this.addSign(z7, tableName);
-        Znak z8 = new Znak("", R.drawable.zdp_parking_invalid);
-        this.addSign(z8, tableName);
-        Znak z9 = new Znak("", R.drawable.zdp_stop_sesto_metara);
-        this.addSign(z9, tableName);
-        Znak z10 = new Znak("", R.drawable.zdp_tri_znaka_sesto_metara);
-        this.addSign(z10, tableName);
-        Znak z11 = new Znak("", R.drawable.zdp_zabrana_parkiranja_cetiri_do_sest);
-        this.addSign(z11, tableName);
-    }
-
     public void addSign(Znak sign, String tableName) {
+
         ContentValues values = new ContentValues();
-        values.put(DatabaseConstants.KEY_NAME, sign.getName());
-        values.put(DatabaseConstants.KEY_ID_IMG, sign.getId_img());
+        values.put(DatabaseConstants.KEY_ID_IMG, sign.getBitmap());
+        values.put(DatabaseConstants.KEY_POSITION, sign.getPosition());
+
         sqLiteDatabase.insert(tableName, null, values);
     }
 
@@ -352,10 +285,13 @@ public class DbHelper extends SQLiteOpenHelper {
         values.put(DatabaseConstants.KEY_OPTA, quest.getOPTA());
         values.put(DatabaseConstants.KEY_OPTB, quest.getOPTB());
         values.put(DatabaseConstants.KEY_OPTC, quest.getOPTC());
-        values.put(DatabaseConstants.KEY_ANSWER, quest.getANSWER());
+        values.put(DatabaseConstants.KEY_ANSWER_ONE, quest.getANSWER_ONE());
+        values.put(DatabaseConstants.KEY_ANSWER_TWO, quest.getANSWER_TWO());
         values.put(DatabaseConstants.KEY_IMAGE_ID, quest.getImg_ID());
         values.put(DatabaseConstants.KEY_HAS_IMAGE, quest.hasImage() ? 1 : 0);
-        values.put(DatabaseConstants.KEY_CORRECT_ANSWER, quest.getCorrectAnswer());
+        values.put(DatabaseConstants.KEY_CORRECT_ANSWER_ONE, quest.getCorrectAnswerOne());
+        values.put(DatabaseConstants.KEY_CORRECT_ANSWER_TWO, quest.getCorrectAnswerTwo());
+        values.put(DatabaseConstants.KEY_ONE_OR_TWO_ANSWERS, quest.getOneOrTwoAnswers());
         sqLiteDatabase.insert(DatabaseConstants.TABLE_QUEST, null, values);
     }
 
@@ -369,13 +305,16 @@ public class DbHelper extends SQLiteOpenHelper {
                 Question quest = new Question();
                 quest.setID(cursor.getInt(0));
                 quest.setQUESTION(cursor.getString(1));
-                quest.setOPTA(cursor.getString(3));
-                quest.setOPTB(cursor.getString(4));
-                quest.setOPTC(cursor.getString(5));
-                quest.setANSWER(cursor.getString(2));
-                quest.setImg_ID(cursor.getInt(6));
-                quest.setHasImage(cursor.getInt(7) == 1);
-                quest.setCorrectAnswer(cursor.getInt(8));
+                quest.setANSWER_ONE(cursor.getString(2));
+                quest.setANSWER_TWO(cursor.getString(3));
+                quest.setOPTA(cursor.getString(4));
+                quest.setOPTB(cursor.getString(5));
+                quest.setOPTC(cursor.getString(6));
+                quest.setImg_ID(cursor.getInt(7));
+                quest.setHasImage(cursor.getInt(8) == 1);
+                quest.setCorrectAnswerOne(cursor.getInt(9));
+                quest.setCorrectAnswerTwo(cursor.getInt(10));
+                quest.setOneOrTwoAnswers(cursor.getInt(11));
                 quesList.add(quest);
             } while (cursor.moveToNext());
         }
@@ -429,6 +368,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void addRaskrizje(Semafor semafor) {
+
         ContentValues values = new ContentValues();
         values.put(DatabaseConstants.KEY_NAME, semafor.getName());
         values.put(DatabaseConstants.KEY_ID_IMG, semafor.getId_img());
@@ -519,91 +459,47 @@ public class DbHelper extends SQLiteOpenHelper {
         return semaforList;
     }
 
-    private void addInformationSigns(String tableName) {
-        Znak z1 = new Znak("Cesta sa jednosmjernim prometom", R.drawable.zob_cesta_sa_jednosmjernim_prometom);
-        this.addSign(z1, tableName);
-        Znak z2 = new Znak("Cesta sa prednošću prolaska", R.drawable.zob_cesta_sa_prednoscu_prolaska);
-        this.addSign(z2, tableName);
-        Znak z3 = new Znak("Djeca na cesti", R.drawable.zob_djeca_na_cesti);
-        this.addSign(z3, tableName);
-        Znak z4 = new Znak("Izbočina na cesti", R.drawable.zob_izbocina_na_cesti);
-        this.addSign(z4, tableName);
-        Znak z5 = new Znak("Obilježen pješački prelaz", R.drawable.zob_obiljezen_pjesacki_prelaz);
-        this.addSign(z5, tableName);
-        Znak z6 = new Znak("Obilježen prijelaz biciklističke staze", R.drawable.zob_obiljezen_prijelaz_biciklisticke_staze);
-        this.addSign(z6, tableName);
-        Znak z7 = new Znak("Podzemni ili nadzemni pješački prijelaz", R.drawable.zob_podezemni_ili_nadzemni_pjesacki_prijelaz);
-        this.addSign(z7, tableName);
-        Znak z8 = new Znak("Prednost prema vozilima iz suprotnog smjera", R.drawable.zob_prednost_prolaska_prema_vozilima_iz_suprotnog_smjera);
-        this.addSign(z8, tableName);
-        Znak z9 = new Znak("Prestanak davanja zvučnih signala", R.drawable.zob_prestanak_davanja_zvucnih_signala);
-        this.addSign(z9, tableName);
-        Znak z10 = new Znak("Prestanak najmanje dopuštene brzine", R.drawable.zob_prestanak_najmanje_dopustene_brzine);
-        this.addSign(z10, tableName);
-        Znak z11 = new Znak("Prestanak obavezne uporabe zimske opreme", R.drawable.zob_prestanak_obavezne_uporabe_zimske_opreme);
-        this.addSign(z11, tableName);
-        Znak z12 = new Znak("Prestanak ograničenja brzine", R.drawable.zob_prestanak_ogranicenja_brzine);
-        this.addSign(z12, tableName);
-        Znak z13 = new Znak("Prestanak svih zabrana", R.drawable.zob_prestanak_svih_zabrana);
-        this.addSign(z13, tableName);
-        Znak z14 = new Znak("Prestanak zabrane pretjecanja svih motornih vozila osim mopeda", R.drawable.zob_prestanak_zabrane_pretjecanja_svih_motornih_vozila_osim_mopeda);
-        this.addSign(z14, tableName);
-        Znak z15 = new Znak("Prestanak zabrane pretjecanja za teretne automobile", R.drawable.zob_prestanak_zabrane_pretjecanja_za_teretne_automobile);
-        this.addSign(z15, tableName);
-        Znak z16 = new Znak("Završetak biciklističke ceste", R.drawable.zob_zavrsetak_biciklisticke_ceste);
-        this.addSign(z16, tableName);
-        Znak z17 = new Znak("Završetak ceste s prednošću prolaska", R.drawable.zob_zavrsetak_ceste_s_prednoscu_prolaska);
-        this.addSign(z17, tableName);
-        Znak z18 = new Znak("Završetak pješačke staze", R.drawable.zob_zavrsetak_pjesacke_staze);
-        this.addSign(z18, tableName);
-        Znak z19 = new Znak("Završetak staze za jahače", R.drawable.zob_zavrsetak_staze_za_jahace);
-        this.addSign(z19, tableName);
-        Znak z20 = new Znak("Završetak zone u kojoj je ograničena brzina", R.drawable.zob_zavrsetak_zone_u_kojoj_je_ogranicena_brzina);
-        this.addSign(z20, tableName);
-        Znak z21 = new Znak("Zona u kojoj je ograničena brzina", R.drawable.zob_zona_u_kojoj_je_ogranicena_brzina);
-        this.addSign(z21, tableName);
-    }
 
-    private void addTrafficLeadingSigns(String tableName) {
+    public Znak getSign(String tableName) {
 
-        Znak z1 = new Znak("Potvrda smjera", R.drawable.zvp_potvrda_smjera);
-        this.addSign(z1, tableName);
-        Znak z2 = new Znak("Predputokaz", R.drawable.zvp_predputokaz);
-        this.addSign(z2, tableName);
-        Znak z3 = new Znak("Predputokaz za čvoriste autocesta s oznakom čvorišta", R.drawable.zvp_predputokaz_za_cvoriste_autocesta_s_oznakom_cvorista);
-        this.addSign(z3, tableName);
-        Znak z4 = new Znak("Predputokaz za izlaz", R.drawable.zvp_predputokaz_za_izlaz);
-        this.addSign(z4, tableName);
-        Znak z5 = new Znak("Predputokaz za izlaz s autoceste ili brze ceste s oznakom izlaza", R.drawable.zvp_predputokaz_za_izlaz_s_autoceste_ili_brze_ceste_s_oznakom_izlaza);
-        this.addSign(z5, tableName);
-        Znak z6 = new Znak("Predputokazna ploča", R.drawable.zvp_predputokazna_ploca);
-        this.addSign(z6, tableName);
-        Znak z7 = new Znak("Putokaz na portalu iznad dvije putokazne ploče", R.drawable.zvp_putokaz_na_portalu_iznad_dvije_prometne_trake);
-        this.addSign(z7, tableName);
-        Znak z8 = new Znak("Putokaz na portalu iznad jedne prometne trake", R.drawable.zvp_putokaz_na_portalu_iznad_jedne_prometne_trake);
-        this.addSign(z8, tableName);
-        Znak z9 = new Znak("Putokazna ploča", R.drawable.zvp_putokazna_ploca);
-        this.addSign(z9, tableName);
-        Znak z10 = new Znak("Raskrižje", R.drawable.zvp_raskrizje);
-        this.addSign(z10, tableName);
-        Znak z11 = new Znak("Raskrižje kružnog oblika", R.drawable.zvp_raskrizje_kruznog_oblika);
-        this.addSign(z11, tableName);
-    }
+        idSign = AutoskolaApp.getPosition();
+        if(AutoskolaApp.getPosition() != -1){
+            String selectQuery = " DROP TABLE IF EXISTS " + DatabaseConstants.TABLE_ZNAK_OPASNOSTI;
+            sqLiteDatabase = this.getWritableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
 
-    public List<Znak> getAllSigns(String tableName) {
-        List<Znak> signs = new ArrayList<Znak>();
+        }
+
+        if (AutoskolaApp.getPosition() != 0) {
+            instance.getWritableDatabase();
+            createAndPopulateDangerSigns(sqLiteDatabase);
+
+        }else{
+            instance.getWritableDatabase();
+            createAndPopulateDangerSignFirst(sqLiteDatabase);
+        }
+        Znak sign = new Znak();
+        Znak provjera = new Znak();
         String selectQuery = "SELECT * FROM " + tableName;
         sqLiteDatabase = this.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+
         if (cursor.moveToFirst()) {
+
             do {
-                Znak znak = new Znak();
-                znak.setId(cursor.getInt(0));
-                znak.setName(cursor.getString(1));
-                znak.setId_img(cursor.getInt(2));
-                signs.add(znak);
+                provjera.setPosition(cursor.getInt(2));
+                if (provjera.getPosition() == idSign)
+                    break;
             } while (cursor.moveToNext());
         }
-        return signs;
+
+        sign.setId(cursor.getInt(0));
+        sign.setBitmap(cursor.getBlob(1));
+        sign.setPosition(cursor.getInt(2));
+
+        return sign;
     }
+
+
+
 }

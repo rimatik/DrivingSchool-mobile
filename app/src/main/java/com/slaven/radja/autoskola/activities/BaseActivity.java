@@ -8,7 +8,7 @@ import com.slaven.radja.autoskola.R;
 import com.slaven.radja.autoskola.helpers.PreferencesHelper;
 
 /**
- * Created by fgrbac on 15/08/14.
+ * Created by Computer on 15/08/14.
  */
 public class BaseActivity extends Activity {
 
@@ -16,9 +16,9 @@ public class BaseActivity extends Activity {
 
     protected void setBackground() {
         if (PreferencesHelper.getBoolean(this, Constants.KEY_BLACK_BACKGROUND, false)) {
-            rootView.setBackgroundResource(R.drawable.background_autoskola_black);
+            rootView.setBackgroundColor(0X11AFE3);
         } else {
-            rootView.setBackgroundResource(R.drawable.background_autoskola_p1);
+            rootView.setBackgroundColor(0X000000);
         }
     }
 }

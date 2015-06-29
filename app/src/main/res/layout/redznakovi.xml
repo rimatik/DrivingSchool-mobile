@@ -23,8 +23,6 @@
         android:text="Small text"
         android:textSize="15dp"
         android:id="@+id/textView"
-
-
         android:layout_alignBottom="@+id/imageView"
         android:layout_toRightOf="@+id/imageView"
         android:paddingTop="15dp"

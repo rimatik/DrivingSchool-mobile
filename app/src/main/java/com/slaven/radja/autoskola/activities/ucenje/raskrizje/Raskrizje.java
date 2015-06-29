@@ -27,7 +27,9 @@ public class Raskrizje extends BaseActivity implements AdapterView.OnItemClickLi
 
 
 
-    public String lv_class_names[]= {PrednostNaRaskrizju.class.getName(), PrometniPolicajacNaRaskrizju.class.getName(), HijerarhijskiRedosljedNaRaskrizju.class.getName()};
+    public String lv_class_names[]= {PrednostNaRaskrizju.class.getName(), PrometniPolicajacNaRaskrizju.class.getName(), HijerarhijskiRedosljedNaRaskrizju
+            .class.getName() };
+
     int[] images ={R.drawable.crossroad,R.drawable.policajac, R.drawable.hierarhija_icon};
 
     @Override

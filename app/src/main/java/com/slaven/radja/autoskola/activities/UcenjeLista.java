@@ -29,8 +29,6 @@ public class UcenjeLista extends BaseActivity implements AdapterView.OnItemClick
 
     ListView list;
     String[] titles;
-    String[] classes;
-
 
     public String lv_class_names[]= {BrzinaKretanja.class.getName(), PrometniZnakovi.class.getName(), PrometniSemafor.class.getName(), Raskrizje.class.getName(),ZaustavljanjeiParkiranje.class.getName(),KruzniTokRotor.class.getName()};
 int[] images ={R.drawable.brzina__icon,R.drawable.stop_icon, R.drawable.semafor_icon, R.drawable.crossroad_icon,R.drawable.parking_icona,R.drawable.kruznitok_icon};
@@ -51,12 +49,8 @@ int[] images ={R.drawable.brzina__icon,R.drawable.stop_icon, R.drawable.semafor_
 
     }
 
-
-
-
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
 
         Intent i = null;
         try {
@@ -65,7 +59,6 @@ int[] images ={R.drawable.brzina__icon,R.drawable.stop_icon, R.drawable.semafor_
             e.printStackTrace();
         }
         startActivity(i);
-
 
 
     }
@@ -84,8 +77,6 @@ class UcenjeAdapter extends ArrayAdapter<String>
         this.titles = titles;
 
     }
-
-
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {

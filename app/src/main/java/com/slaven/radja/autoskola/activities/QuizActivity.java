@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,18 +32,19 @@ import java.util.concurrent.TimeUnit;
 public class QuizActivity extends BaseActivity {
 
     private List<Question> quesList;
-    private List<Integer> answers;
-    private List<Integer> correctAnswers;
+    private List<Integer> answersA,answersB,answersC;
+    private List<Integer> correctAnswersOne, correctAnswersTwo;
     private int qid = 0;
     private Question currentQ;
     private TextView txtQuestion, tvVrijeme;
-    private RadioButton rda, rdb, rdc;
-    private Button butNext;
+    private CheckBox rda, rdb, rdc;
+    private Button butNext,butPrev;
     private Intent intent;
     private ImageView questionImage;
     private Spinner questionPicker;
     private CountDownTimer countDownTimer;
-    private RadioGroup radioGroup;
+
+    private int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,26 +55,31 @@ public class QuizActivity extends BaseActivity {
         DbHelper db = DbHelper.getInstance(this);
 
         quesList = db.getAllQuestions();
-        answers = new ArrayList<Integer>();
-        correctAnswers = new ArrayList<Integer>();
+        answersA = new ArrayList<Integer>();
+        answersB = new ArrayList<Integer>();
+        answersC = new ArrayList<Integer>();
+        correctAnswersOne = new ArrayList<Integer>();
+        correctAnswersTwo = new ArrayList<Integer>();
         initializeListOfAnswers();
+
         currentQ = quesList.get(qid);
         txtQuestion = (TextView) findViewById(R.id.textView1);
-        rda = (RadioButton) findViewById(R.id.radio0);
+        rda = (CheckBox) findViewById(R.id.checkBox0);
         rda.setOnCheckedChangeListener(checkedChangeListener);
-        rdb = (RadioButton) findViewById(R.id.radio1);
+        rdb = (CheckBox) findViewById(R.id.checkBox1);
         rdb.setOnCheckedChangeListener(checkedChangeListener);
-        rdc = (RadioButton) findViewById(R.id.radio2);
+        rdc = (CheckBox) findViewById(R.id.checkBox2);
         rdc.setOnCheckedChangeListener(checkedChangeListener);
         butNext = (Button) findViewById(R.id.bNext);
-        Button butPrev = (Button) findViewById(R.id.bPrev);
+        butPrev = (Button) findViewById(R.id.bPrev);
         tvVrijeme = (TextView) findViewById(R.id.satPrikaz);
         intent = new Intent(this, ResultActivity.class);
         questionImage = (ImageView) findViewById(R.id.iv_question_image);
         questionPicker = (Spinner) findViewById(R.id.question_picker);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup1);
+
         setupQuestionPickerSpinner();
         setNextQuestionView();
+
 
         countDownTimer = new CountDownTimer(1200000, 1000) {
 
@@ -85,6 +91,50 @@ public class QuizActivity extends BaseActivity {
             }
 
             public void onFinish() {
+                for (int i = 0; i < quesList.size(); i++) {
+                    if (quesList.get(i).getOneOrTwoAnswers() == 1) {
+
+                        if (answersA.get(i).equals(correctAnswersOne.get(i))) {
+                            score++;
+                        }
+                         if (answersB.get(i).equals(correctAnswersOne.get(i))){
+                            score++;
+                        }
+                        if (answersC.get(i).equals(correctAnswersOne.get(i))){
+                            score++;
+                        }
+                    }
+                    if (quesList.get(i).getOneOrTwoAnswers() == 2) {
+
+                        if (answersA.get(i).equals(correctAnswersOne.get(i)) && answersB.get(i).equals(correctAnswersTwo.get(i))) {
+                            score++;
+                            score++;
+                        }
+                        if (answersA.get(i).equals(correctAnswersOne.get(i)) && answersC.get(i).equals(correctAnswersTwo.get(i))) {
+                            score++;
+                            score++;
+                        }
+                        if (answersB.get(i).equals(correctAnswersOne.get(i)) && answersA.get(i).equals(correctAnswersTwo.get(i))) {
+                            score++;
+                            score++;
+                        }
+                        if (answersB.get(i).equals(correctAnswersOne.get(i)) && answersC.get(i).equals(correctAnswersTwo.get(i))) {
+                            score++;
+                            score++;
+                        }
+                        if (answersC.get(i).equals(correctAnswersOne.get(i)) && answersA.get(i).equals(correctAnswersTwo.get(i))) {
+                            score++;
+                            score++;
+                        }
+                        if (answersC.get(i).equals(correctAnswersOne.get(i)) && answersB.get(i).equals(correctAnswersTwo.get(i))) {
+                            score++;
+                            score++;
+                        }
+                    }
+                }
+                Bundle bundle = new Bundle();
+                bundle.putInt(Constants.KEY_SCORE, score);
+                intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
             }
@@ -95,14 +145,69 @@ public class QuizActivity extends BaseActivity {
         butNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // ako sam na zadnjem pitanju
+
                 if (qid == quesList.size() - 1) {
-                    int score = 0;
+                    score = 0;
                     for (int i = 0; i < quesList.size(); i++) {
-                        if (answers.get(i).equals(correctAnswers.get(i))) {
-                            score++;
+                        if (quesList.get(i).getOneOrTwoAnswers() == 1) {
+
+                            if(answersA.get(i) != -1 && answersB.get(i) != -1 && answersC.get(i) != -1)
+                            {
+                            }
+                            else if (answersA.get(i) != -1 && answersB.get(i) != -1){
+                            }
+                            else if (answersA.get(i) != -1 && answersC.get(i) != -1){
+                            }
+                            else if (answersB.get(i) != -1 && answersC.get(i) != -1){
+                            }
+                            else
+                            {
+                                if (answersA.get(i).equals(correctAnswersOne.get(i))) {
+                                    score +=1;
+                                }
+                                if (answersB.get(i).equals(correctAnswersOne.get(i))){
+                                    score +=1;
+                                }
+                                if (answersC.get(i).equals(correctAnswersOne.get(i))){
+                                    score +=1;
+                                }
+                            }
+
+                        }
+                        if (quesList.get(i).getOneOrTwoAnswers() == 2) {
+                            if(answersA.get(i) != -1 && answersB.get(i) != -1 && answersC.get(i) != -1)
+                            {
+                            }else {
+                                if (answersA.get(i).equals(correctAnswersOne.get(i)) && answersB.get(i).equals(correctAnswersTwo.get(i))) {
+
+                                    score +=2;
+                                }
+                                if (answersA.get(i).equals(correctAnswersOne.get(i)) && answersC.get(i).equals(correctAnswersTwo.get(i))) {
+
+                                    score +=2;
+                                }
+                                if (answersB.get(i).equals(correctAnswersOne.get(i)) && answersA.get(i).equals(correctAnswersTwo.get(i))) {
+
+                                    score +=2;
+                                }
+                                if (answersB.get(i).equals(correctAnswersOne.get(i)) && answersC.get(i).equals(correctAnswersTwo.get(i))) {
+
+                                    score +=2;
+                                }
+                                if (answersC.get(i).equals(correctAnswersOne.get(i)) && answersA.get(i).equals(correctAnswersTwo.get(i))) {
+
+                                    score +=2;
+                                }
+                                if (answersC.get(i).equals(correctAnswersOne.get(i)) && answersB.get(i).equals(correctAnswersTwo.get(i))) {
+
+                                    score +=2;
+                                }
+                            }
+
+
                         }
                     }
+
                     countDownTimer.cancel();
                     Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
                     Bundle bundle = new Bundle();
@@ -110,11 +215,12 @@ public class QuizActivity extends BaseActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
-                } else {
+                } else{
                     qid++;
                     currentQ = quesList.get(qid);
                     setNextQuestionView();
                 }
+
             }
 
         });
@@ -135,8 +241,11 @@ public class QuizActivity extends BaseActivity {
     private void initializeListOfAnswers() {
         for (int i = 0; i < quesList.size(); i++) {
             // -1 znaci da je pitanje neodgovoreno
-            answers.add(i, -1);
-            correctAnswers.add(i, quesList.get(i).getCorrectAnswer());
+            answersA.add(i, -1);
+            answersB.add(i, -1);
+            answersC.add(i, -1);
+            correctAnswersOne.add(i, quesList.get(i).getCorrectAnswerOne());
+            correctAnswersTwo.add(i, quesList.get(i).getCorrectAnswerTwo());
         }
     }
 
@@ -150,12 +259,6 @@ public class QuizActivity extends BaseActivity {
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item_row);
         questionPicker.setAdapter(spinnerArrayAdapter);
         questionPicker.setOnItemSelectedListener(questionPickerListener);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_quiz, menu);
-        return true;
     }
 
     @Override
@@ -183,17 +286,29 @@ public class QuizActivity extends BaseActivity {
     }
 
     private void setQuestionTextAndAnswers() {
-        if (answers.get(qid) != -1) {
-            if (answers.get(qid) == 0) {
-                rda.toggle();
-            } else if (answers.get(qid) == 1) {
-                rdb.toggle();
-            } else {
-                rdc.toggle();
-            }
-        } else {
-            radioGroup.clearCheck();
-        }
+
+
+
+                if (answersA.get(qid) == 0){
+                    rda.setChecked(true);
+                   }
+                 else
+                {
+
+                rda.setChecked(false);
+                }
+                if (answersB.get(qid) == 1){
+                    rdb.setChecked(true);
+                   }
+                 else
+                rdb.setChecked(false);
+
+                if (answersC.get(qid) == 2){
+                    rdc.setChecked(true);
+                    }
+                 else
+                rdc.setChecked(false);
+
         txtQuestion.setText(currentQ.getQUESTION());
         rda.setText(currentQ.getOPTA());
         rdb.setText(currentQ.getOPTB());
@@ -204,6 +319,8 @@ public class QuizActivity extends BaseActivity {
         } else {
             questionImage.setVisibility(View.GONE);
         }
+
+
     }
 
     private AdapterView.OnItemSelectedListener questionPickerListener = new AdapterView.OnItemSelectedListener() {
@@ -227,14 +344,46 @@ public class QuizActivity extends BaseActivity {
         public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
             if (checked) {
                 String text = (String) compoundButton.getText();
+
                 if (currentQ.getOPTA().equals(text)) {
-                    answers.set(qid, 0);
-                } else if (currentQ.getOPTB().equals(text)) {
-                    answers.set(qid, 1);
-                } else {
-                    answers.set(qid, 2);
+                    answersA.set(qid, 0);
+
+                } if (currentQ.getOPTB().equals(text)) {
+                    answersB.set(qid, 1);
+
+                } if (currentQ.getOPTC().equals(text)) {
+                    answersC.set(qid, 2);
+
+                }
+
+
+
+            }else{
+                String text = (String) compoundButton.getText();
+
+                if (currentQ.getOPTA().equals(text)) {
+                    if(rda.isChecked()){
+
+                    }else
+                        answersA.set(qid, -1);
+
+                } if (currentQ.getOPTB().equals(text)) {
+                    if(rdb.isChecked()){
+
+                    }else
+                        answersB.set(qid, -1);
+
+                } if (currentQ.getOPTC().equals(text)) {
+                    if(rdc.isChecked()){
+
+                    }else
+                        answersC.set(qid, -1);
+
                 }
             }
-        }
-    };
-}
+
+
+            }
+
+        };
+     }

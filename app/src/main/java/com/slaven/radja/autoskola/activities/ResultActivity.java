@@ -17,6 +17,7 @@ import com.slaven.radja.autoskola.R;
 public class ResultActivity extends BaseActivity implements View.OnClickListener{
     Button back;
     ImageView slikaPrikaz;
+    int score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +33,19 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
         slikaPrikaz = (ImageView) findViewById(R.id.ivPrikazRezultat);
 //get score
         Bundle b = getIntent().getExtras();
-        int score = b.getInt(Constants.KEY_SCORE);
-        if (score < 18) {
-            t.setText("Nažalost niste prošli test" + " sakupili ste ukupno: " + score + "/21" + " bodova!");
-            t.setTextColor(Color.WHITE);
-            t.setTextSize(25);
-            slikaPrikaz.setImageResource(R.drawable.wrong_img);
-        } else {
-            t.setText("Uspješno ste položili test" + " sakupili ste ukupno: " + score + "/21" + " bodova!" + " Čestitamo!");
-            t.setTextColor(Color.WHITE);
-            t.setTextSize(25);
+        score = b.getInt(Constants.KEY_SCORE);
+        if (score >= 26) {
             slikaPrikaz.setImageResource(R.drawable.check_img);
+            t.setText("Uspješno ste položili test" + " sakupili ste ukupno: " + score + "/29" + " bodova!" + " Čestitamo!");
+            t.setTextColor(Color.WHITE);
+            t.setTextSize(25);
+
+        } else {
+            slikaPrikaz.setImageResource(R.drawable.wrong_img);
+           t.setText("Nažalost niste prošli test" + " sakupili ste ukupno: " + score + "/29" + " bodova!");
+            t.setTextColor(Color.WHITE);
+            t.setTextSize(25);
+
         }
     }
 //display score

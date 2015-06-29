@@ -6,23 +6,22 @@ package com.slaven.radja.autoskola.models;
 public class Znak {
 
     int id;
-    String name;
-    int id_img;
+    int position;
+    byte [] bitmap;
 
 
     public Znak() {
         id = 0;
-        name = "";
-        id_img = 0;
 
     }
-
-
-    public Znak(String name,int id_img) {
-        this.name = name;
-        this.id_img = id_img;
+    public Znak(byte[] bitmap, int position) {
+        this.position = position;
+        this.bitmap = bitmap;
     }
 
+    public Znak(byte [] bitmap) {
+        this.bitmap = bitmap;
+    }
 
     public int getId() {
         return id;
@@ -32,19 +31,20 @@ public class Znak {
         this.id = idSign;
     }
 
-    public String getName() {
-        return name;
+    public byte[] getBitmap() {
+        return bitmap;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getId_img() {
-        return id_img;
+    public void setBitmap(byte[] bitmap) {
+        this.bitmap = bitmap;
     }
 
-    public void setId_img(int id_img) {
-        this.id_img = id_img;
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
 }

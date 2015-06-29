@@ -2,12 +2,56 @@
 <resources>
 
     <string name="app_name">Autoskola</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+   <string name="action_settings">Settings</string>
     <string name="choose_question">Odaberi pitanje: </string>
     <string name="finish_quiz">Završi ispit</string>
     <string name="next">Sljedeće</string>
-
+    <string name="brzina_kretanja">"1.Vozač je dužan brzinu kretanja vozila prilagoditi osobinama i stanju ceste, vidljivosti preglednosti, atmosferskim prilikama, stanju vozila i tereta, gustoći pometa tako da vozilo može pravovremeno zaustaviti pred svakom zaprekom koju, u konkretnim uvjetima, može predvidjeti, odnosno da može pravovremeno postupiti prema prometnom pravilu ili znaku.\n\n"
+                "Brzina kretanja vozila na cesti uz normalne prometne uvjete ne smije se ograničiti ispod 40 km na sat.\n\n"
+                "Na cesti u naselju vozač se ne smije vozilom kretati brzinom većom od 50 km na sat, odnosno brzinom većom od brzine dopuštene postavljenim prometnim znakom za cijelo naselje ili njegov dio.\n\n"
+                "Iznimno, od odredbe stavka 1. ovog članka, na cesti u naselju čiji prometno - tehnički i sigurnosni elementi to omogućuju (npr. Pješački pothodnici i nadhodnici, upravljanje na raskrižjima s uređajima za davanje znakova s prometnim svjetlima i sl.) mora se prometnim znakom dopustit kretanje vozilom i brzinom većom od 50 km na sat, a najviše do 80 km na sat.\n\n"
+                "Novčanom kaznom u iznosu od 5.000,00 kn do 15.000,00 kn ili zatvorom do 60 dana i tri negativna prekršajna boda kaznit će se za prekršaj vozač koji se vozilom na cesti u naselju kreće brzinom koja je za više od 50 km na sat veća od dopuštene ili prometnim znakom ograničene brzine.\n\n"
+                "Na cesti izvan naselja vozač se ne smije vozilom kretati brzinom većom od brzine dopuštene postavljenim prometnim znakom, a najaviše:\n\n"
+                "- 130 km na sat na autocestama\n\n"
+                "- 110 km na sat na cestama namijenjenim isključivo za promet motornih vozila i brzoj cesti\n\n"
+                "- 90 km na sat na ostalim cestama\n \n"
+                "Novčanom kaznom u iznosu od 3.000,00 kn do 7.000,00 kn te tri negativna prekršajna boda kaznit će se za prekršaj vozač koji se vozilom na cesti izvan naselja kreće brzinom koja je za više od 50 km na sat veća od dopuštene ili prometnim znakom ograničene brzine."
+                "\n\n"
+                "Brzina kretanja na cestama ograničava se:\n\n"
+                "- 80 km na sat – za autobuse, za motorna vozila najveće dopuštene mase veće od 3,5 tone i sva motorna vozila ako vuku priključno vozilo bez kočnica\n\n"
+                "- 80 km na sat – za autobuse kojima se organizirano prevoze djeca\n\n"
+                "- 70 km na sat - za zglobne autobuse bez mjesta za stajanje\n\n"
+                "- 50 km na sat - za sva motorna vozila i motorna vozila s priključnim vozilom u kojima se u tovarnom prostoru prevoze osobe te za autobuse s mjestima za stajanje\n\n"
+                "- 40 km na sat – za vozilo koje vuče drugo neispravno vozilo i za traktore\n\n"
+                "- 20 km na sat za turistički vlak\n\n"
+                "Iznimno brzina kretanja pojedinih vozila na autocestama dodatno se ograničava na:\n\n"
+                "- 100 km na sat - za autobuse, osim za autobuse kojima se organizirano prevoze djeca\n\n"
+                "- 90 km na sat - za motorna vozila najveće dopuštene mase veće od 3,5 tone i za sva motorna vozila ako vuku priključno vozilo bez kočnica \n\n"
+                </string>
+    <string name="zaustavljanje">"Zaustavljanje je prekid vožnje do tri minute a parkiranje duže od tri minute (osim prekida koji se čini da bi se postupilo po znaku ili pravilu kojim se upravlja prometom). Vozač ne smije zaustaviti ili parkirati vozilo na mjestu na kojem bi ono ugrožavalo sigurnost drugih sudionika u prometu ili predstavljalo smetnju za normalan tok prometa ili kretanje pješaka.\n\n"
+                "Na cesti, na mjestu, odnosno na prostoru namijenjenom za zaustavljanje i parkiranje vozila, te na posebno uređenoj prometnoj površini namijenjenoj za kretanje pješaka, ne smiju se ostavljati vozila koja se ne upotrebljavaju u prometu zbog dotrajalosti (neregistrirana i sl.) ili priključna vozila koja se u prometu koriste samo povremeno (lake i kamp prikolice i sl.), a ni drugi predmeti kojima se ometa tok prometa ili ugrožava okoliš.\n\n"
+                "Vozač ne smije zaustaviti ili parkirati vozilo:\n\n"
+                "1) Na obilježenom pješačkom prijelazu i na udaljenosti manjoj od 5 m od tog prijelaza i na prijelazu biciklističke staze preko kolnika.\n\n"
+                "2) Na prijelazu ceste preko željezničke ili tramvajske pruge u istoj razini.\n\n"
+                "3) Na željezničkim ili tramvajski prugama i u blizini tih pruga ako se time sprečavaju promet vozila koja se kreću po tračnicama.\n\n"
+                "4) Na raskrižju i na udaljenosti manjoj od 5 m od najbližeg ruba poprečnog kolnika.\n\n"
+                "5) U tunelima, na mostovima u podvožnjacima i na nadvožnjacima te na udaljenosti manjoj od 15 m od mosta, tunela, podvožnjaka i nadvožnjaka.\n\n"
+                "6) Na dijelu ceste u blizini vrha prijevoja i u zavoju gdje je preglednost ceste nedovoljna i gdje se vozila ne bi mogla obići bez opasnosti.\n\n"
+                "7) Na dijelu ceste gdje bi širina slobodnog prolaza od zaustavljenog ili parkiranog vozila do neisprekidane uzdužne crte na kolnika ili do neke zapreke na cesti, bila manja od 3 m, odnosno od suprotnog ruba kolnika – manja od 4 metra.\n\n"
+                "8) Na mjestu na kojem bi vozilo zaklanjalo postavljeni prometni znak ili uređaj za davanje znakova prometnim svjetlima.\n\n"
+                "9) Na biciklističkoj stazi, odnosno traci.\n\n"
+                "10) Na dijelu kolnika koji je kao stajalište za vozila javnog prijevoza putnika obilježen oznakama na kolniku ili prometnim znakom.\n\n"
+                "11) Na nogostupu.\n\n"
+                "12) Ispred kolnog ulaza u zgradu, sklonište, dvorište ili garažu, iznad priključka na vodovodnu mrežu i ulaza u kanalizaciju ili drugu komunalnu mrežu te na mjestima rezerviranim za vozila opskrbe ili na mjestima namijenjenim i obilježenim kao mjesta za odlaganje kućnog otpada, ispred i na vatrogasnim i drugim komunalnim i javnim prolazima i prilazima.\n\n"
+                "13) Na mjestu rezerviranom za parkiranje vozila osoba s invaliditetom.\n\n"
+                "Zaustavljanje je dopušteno:\n\n"
+                "1) Ako je za kretanje pješaka ostavljeno najmanje 1,6 m širine na površini za kretanje pješaka, s tim da ta površina ne može biti uz rub kolnika. Pod istim uvjetima može se parkirati ako je to dopušteno prometnim znakom. \n\n"
+                "Vozač ne smije parkirati vozilo:\n\n"
+                "1) Na dijelu ceste ispred prijelaza ceste preko željezničke i tramvajske pruge u istoj razini, i to na udaljenosti manjoj od 15 m od tih prijelaza.\n\n"
+                "2) Na udaljenosti manjoj od 15 m ispred i iza znaka kojim je obilježeno stajalište za vozila javnog prijevoza putnika.\n\n"
+                "3) Na mjestu na kojem bi parkirano vozilo onemogućilo pristup drugom vozilu radi parkiranja ili izlazak nekom već parkiranom vozilu.\n\n"
+                "4) Vozač koji zaustavi ili parkira vozilo tamo gdje je to prometnim pravilom ili znakom zabranjeno bit će kažnjen s 300kn, a ako to učini na mjestu koje je rezervirano za osobe s invaliditetom kazna je 700kn. \n\n"
+                </string>
     <string-array name="titles">
         <item>Brzina kretanja</item>
         <item>Prometni znakovi</item>
@@ -28,7 +72,78 @@
     <string-array name="titlesRaskrsca">
         <item>Prednost na raskrižju</item>
         <item>Prometni policajac na raskrižju</item>
-        <item>Hijerarhijski redosljed</item>
+        <item>Hijerarhijski redoslijed</item>
      </string-array>
+
+    <string-array name="titlesZnakoviAll">
+        <item>Opasnost na cesti</item>
+        <item>Dvostruki zavoj ulijevo</item>
+        <item>Dvostruki zavoj udesno</item>
+        <item>Opasna nizbrdica</item>
+        <item>Opasna uzbrdica</item>
+        <item>Suženje ceste</item>
+        <item>Suženje ceste s desne strane</item>
+        <item>Suženje ceste s lijeve strane</item>
+        <item>Neravan kolnik</item>
+        <item>Neravan kolnik</item>
+        <item>Neravan kolnik</item>
+        <item>Raskrizje cesta iste važnosti</item>
+        <item>Sklizak kolnik</item>
+        <item>Kamenje pršti</item>
+        <item>Kamenje pada</item>
+        <item>Nailazak na prometna svjetla</item>
+        <item>Nailazak na prometna svjetla</item>
+        <item>Radovi na cesti</item>
+        <item>Promet u oba smjera</item>
+        <item>Raskrižje s kružnim tokom prometa</item>
+        <item>Poledica</item>
+    </string-array>
+    <array name="icons">
+        <item>@drawable/zo_opasnost_na_cesti</item>
+        <item>@drawable/zo_dvostruki_zavoj_ili_vise_uzastopnih_zavoja_od_kojih_je_prvi_ulijevo</item>
+        <item>@drawable/zo_dvostruki_zavoj_ili_vise_uzastopnih_zavoja_od_kojih_je_prvi_udesno</item>
+        <item>@drawable/zo_opasna_nizbrdica</item>
+        <item>@drawable/zo_opasna_uzbrdica</item>
+        <item>@drawable/zo_suzenje_ceste</item>
+        <item>@drawable/zo_suzenje_ceste_s_desne_strane</item>
+        <item>@drawable/zo_suzenje_ceste_s_lijeve_strane</item>
+        <item>@drawable/zo_neravan_kolnik</item>
+        <item>@drawable/zo_neravan_kolnik2</item>
+        <item>@drawable/zo_neravan_kolnik3</item>
+        <item>@drawable/zo_raskrizje_cesta_iste_vaznosti</item>
+        <item>@drawable/zo_sklizak_kolnik</item>
+        <item>@drawable/zo_kamenje_prsti</item>
+        <item>@drawable/zo_kamenje_pada</item>
+        <item>@drawable/zo_nailazak_na_prometna_svijetla</item>
+        <item>@drawable/zo_nailazak_na_prometna_svijetla2</item>
+        <item>@drawable/zo_radovi_na_cesti</item>
+        <item>@drawable/zo_promet_u_oba_smjera</item>
+        <item>@drawable/zo_raskrizje_s_kruznim_tokom_prometa</item>
+        <item>@drawable/zo_poledica</item>
+    </array>
+    <array name="desDangerSigns">
+        <item>Opasnost na cesti</item>
+        <item>Dvostruki zavoj ili više uzastopnih zavoja od kojih je prvi ulijevo</item>
+        <item>Dvostruki zavoj ili više uzastopnih zavoja od kojih je prvi udesno</item>
+        <item>Opasna nizbrdica</item>
+        <item>Opasna uzbrdica</item>
+        <item>Suženje ceste</item>
+        <item>Suženje ceste s desne strane</item>
+        <item>Suženje ceste s lijeve strane</item>
+        <item>Neravan kolnik</item>
+        <item>Neravan kolnik</item>
+        <item>Neravan kolnik</item>
+        <item>Raskrizje cesta iste važnosti</item>
+        <item>Sklizak kolnik</item>
+        <item>Kamenje pršti</item>
+        <item>Kamenje pada</item>
+        <item>Nailazak na prometna svjetla</item>
+        <item>Nailazak na prometna svjetla</item>
+        <item>Radovi na cesti</item>
+        <item>Promet u oba smjera</item>
+        <item>Raskrižje s kružnim tokom prometa</item>
+        <item>Poledica</item>
+
+    </array>
 
 </resources>

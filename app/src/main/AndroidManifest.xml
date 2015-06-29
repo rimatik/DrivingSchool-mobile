@@ -4,9 +4,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:name=".aplication.AutoskolaApp"
         android:label="@string/app_name"
-        android:theme="@style/AutoskolaBlue" >
+        android:theme="@style/AutoskolaBlue"
+        android:icon="@drawable/ic_da">
 
         <activity
             android:name=".activities.Home"
@@ -54,31 +55,7 @@
             android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
-        <activity
-            android:name=".activities.ucenje.znakovi.ZnakoviOpasnosti"
-            android:screenOrientation="portrait"
-            android:label="Autoskola">
-        </activity>
-        <activity
-            android:name=".activities.ucenje.znakovi.ZnakoviIzricitihNaredbi"
-            android:screenOrientation="portrait"
-            android:label="Autoskola">
-        </activity>
-        <activity
-            android:name=".activities.ucenje.znakovi.ZnakoviObavijesti"
-            android:screenOrientation="portrait"
-            android:label="Autoskola">
-        </activity>
-        <activity
-            android:name=".activities.ucenje.znakovi.ZnakoviZaVodjenjePrometa"
-            android:screenOrientation="portrait"
-            android:label="Autoskola">
-        </activity>
-        <activity
-            android:name=".activities.ucenje.znakovi.DopunskePloceUzZnakove"
-            android:screenOrientation="portrait"
-            android:label="Autoskola">
-        </activity>
+
         <activity
             android:name=".activities.ucenje.PrometniSemafor"
             android:screenOrientation="portrait"
@@ -114,6 +91,8 @@
             android:screenOrientation="portrait"
             android:label="Autoskola">
         </activity>
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

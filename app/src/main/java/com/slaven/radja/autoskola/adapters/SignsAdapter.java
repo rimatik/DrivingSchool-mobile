@@ -1,6 +1,8 @@
 package com.slaven.radja.autoskola.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +44,9 @@ public class SignsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         Znak currentSign = (Znak) getItem(position);
+        Bitmap bitmap;
         ViewHolder holder;
+        byte[] bArray;
 
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.list_item_sign, viewGroup, false);
@@ -51,9 +55,9 @@ public class SignsAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-
-        holder.signDescription.setText(currentSign.getName());
-        holder.signImage.setImageResource(currentSign.getId_img());
+        bArray = currentSign.getBitmap();
+        bitmap = BitmapFactory.decodeByteArray(bArray,0,bArray.length);
+        holder.signImage.setImageBitmap(bitmap);
         return view;
     }
 
@@ -68,7 +72,7 @@ public class SignsAdapter extends BaseAdapter {
 
         public ViewHolder(View view) {
             signImage = (ImageView) view.findViewById(R.id.sign_image);
-            signDescription = (TextView) view.findViewById(R.id.sign_description);
+            signDescription = (TextView) view.findViewById(R.id.tv_FragmentPrikaz);
         }
     }
 }

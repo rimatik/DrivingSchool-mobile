@@ -1,6 +1,12 @@
 package com.slaven.radja.autoskola.activities.ucenje.znakovi;
 
+import android.app.ListFragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.GridView;
 
@@ -17,22 +23,16 @@ import java.util.List;
 /**
  * Created by Computer on 10/08/2014.
  */
-public class ZnakoviObavijesti extends BaseActivity {
+public class ZnakoviObavijesti extends android.support.v4.app.ListFragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.znakovi_izricitih_naredbi);
-        rootView = findViewById(R.id.root_view);
-        setBackground();
-        GridView prohibitorySigns = (GridView) rootView;
-        DbHelper dbHelper = DbHelper.getInstance(this);
-        List<Znak> signs = dbHelper.getAllSigns(DatabaseConstants.TABLE_ZNAK_OBAVIJESTI);
-        SignsAdapter adapter = new SignsAdapter(this, signs);
-        prohibitorySigns.setAdapter(adapter);
+        return inflater.inflate(R.layout.znakovi_obavijesti, null, false);
+    }
+
 
     }
 
-}
+
